@@ -1,27 +1,38 @@
-# GAECBrosses
+# GAEC-Brosses
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4.
+Bienvenue dans le projet **GAEC-Brosses**. Il s'agit d'un projet développé avec Angular et Tailwind CSS.
 
-## Development server
+## Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Ce projet fait partie de mon travail final pour le cours de programmation web. L'application est conçue pour être la page principale de l'exploitation agricole de vaches charolaises et la production de viande. Elle est construite en utilisant Angular comme framework frontend et Tailwind CSS pour le design réactif.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Fonctionnalités
 
-## Build
+- **Angular** : Utilisé pour la construction des composants et l'architecture générale de l'application.
+- **Tailwind CSS** : Framework CSS utilitaire qui facilite le design et le stylisme.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Running unit tests
+Pour exécuter ce projet localement, suivez les étapes suivantes :
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clonez ce dépôt sur votre machine locale :
 
-## Running end-to-end tests
+git clone https://github.com/JorgeRobles1993/GAEC-Brosses.git
+cd GAEC-Brosses
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. Installez les dépendances avec npm :
 
-## Further help
+npm install
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+3. Lancez l'application sur un serveur de développement :
+
+ng serve
+
+4. Ouvrez votre navigateur et allez à http://localhost:4200.
+
+## Contact
+Pour toute question ou suggestion, veuillez contacter :
+
+Nom : [Jorge Joan Robles Escoboza]
+Email : [jorge.robles93@hotmail.com]
