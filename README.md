@@ -4,7 +4,9 @@ Bienvenue dans le projet **GAEC-Brosses**. Il s'agit d'un projet développé ave
 
 ## Description
 
-Ce projet fait partie de mon travail final pour le cours de programmation web.   L'application est conçue pour être la page principale de l'exploitation agricole de vaches charolaises et la production de viande.   Elle est construite en utilisant Angular comme framework frontend et Tailwind CSS pour le design réactif.
+Ce projet fait partie de mon travail final pour le cours de programmation web.  
+L'application est conçue pour être la page principale de l'exploitation agricole de vaches charolaises et la production de viande.  
+Elle est construite en utilisant Angular comme framework frontend et Tailwind CSS pour le design réactif.
 
 
 ## Fonctionnalités
