@@ -18,7 +18,7 @@ Pour exécuter ce projet localement, suivez les étapes suivantes :
 
 1. Clonez ce dépôt sur votre machine locale :
 
-git clone https://github.com/JorgeRobles1993/GAEC-Brosses.git
+git clone https://github.com/JorgeRobles1993/GAEC-Brosses.git  
 cd GAEC-Brosses
 
 2. Installez les dépendances avec npm :
@@ -34,5 +34,5 @@ ng serve
 ## Contact
 Pour toute question ou suggestion, veuillez contacter :
 
-Nom : [Jorge Joan Robles Escoboza]
-Email : [jorge.robles93@hotmail.com]
+Nom : Jorge Joan Robles Escoboza  
+Email : jorge.robles93@hotmail.com
