@@ -1,0 +1,34 @@
+.bg-navbar-color {
+    background-color: #D7CCC8;
+  }
+  
+  .text-marron {
+    color: #8D6E63; /* Marrón */
+  }
+  
+  .hover\:text-vert:hover {
+    color: #4CAF50; /* Verde */
+  }
+  
+  /* Estilos adicionales para el menú Burger */
+  @media (max-width: 1024px) {
+    ul {
+      display: none;
+    }
+  
+    ul.block {
+      display: block;
+      position: absolute;
+      top: 64px; /* Justo debajo del navbar */
+      left: 0;
+      width: 100%;
+      background-color: #D7CCC8;
+      padding: 1rem 0;
+    }
+  
+    ul.block li {
+      text-align: center;
+      padding: 1rem 0;
+    }
+  }
+  
