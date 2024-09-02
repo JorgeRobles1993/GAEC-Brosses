@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; /* Aplica un peso más grueso a los encabezados */
+  }
+  
+  p, a, li, span {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400; /* Aplica un peso normal al texto */
+  }
+  
+  .navbar, .footer {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500; /* Aplica un peso medio a la navbar y el footer */
+  }
+  
