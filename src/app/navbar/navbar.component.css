@@ -24,6 +24,7 @@
       width: 100%;
       background-color: #D7CCC8;
       padding: 1rem 0;
+      z-index: 1001;
     }
   
     ul.block li {
