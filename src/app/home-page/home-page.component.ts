@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { ActualidadComponent } from '../actualidad/actualidad.component';
+import { VideoSectionComponent } from '../video-section/video-section.component';
 
 @Component({
-  selector: 'app-contact',
+  selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, CarouselComponent],
+  imports: [CommonModule, CarouselComponent, ActualidadComponent, VideoSectionComponent],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css'
+  styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent {
-
-}
+export class HomePageComponent {}

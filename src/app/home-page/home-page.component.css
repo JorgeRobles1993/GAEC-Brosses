@@ -1,4 +1,38 @@
-.carousel-section {
-    background-color: #C8E6C9; /* Color de fondo */
-    padding: 20px 0; /* Espaciado alrededor del carrusel */
-  }
+.full-width-section {
+  width: 100%;
+  background-color: #8D6E63;
+  color: white;
+  padding: 20px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.full-width-section p {
+  flex: 1; /* Ocupa todo el espacio disponible a la izquierda */
+  margin-right: 20px; /* Espacio entre el texto y el enlace */
+}
+
+.full-width-section a {
+  flex-shrink: 0; /* Evita que el enlace se encoja */
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: transparent;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.full-width-section a:hover {
+  background-color: white;
+  color: #8D6E63;
+}
+
+.carousel-section{
+    background-color: #C8E6C9; /* Color de fondo general */
+}
