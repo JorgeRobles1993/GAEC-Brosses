@@ -48,4 +48,9 @@
     right: 10px;
   }
   
-  
+  @media (max-width: 768px) {
+    .carousel-image {
+      padding: 37px; /* Reduce el padding en pantallas pequeñas */
+      border-radius: 50px; 
+    }
+  }
