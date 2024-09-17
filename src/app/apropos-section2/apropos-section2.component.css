@@ -1,0 +1,51 @@
+.apropos-section2-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  flex-direction: row; /* Disposición horizontal por defecto */
+}
+
+.apropos-image {
+  width: 100%; /* Tamaño más grande para pantallas grandes */
+  max-width: 100vh; /* Tamaño máximo de la imagen en pantallas grandes */
+  margin-left: 10px; /* Espacio entre el texto y la imagen */
+  border-radius: 50px;
+}
+
+.apropos-text {
+  max-width: 50%; /* Ajuste del ancho del texto en pantallas grandes */
+  text-align: justify; /* Justificar el texto para una mejor legibilidad */
+  margin: 100px; /* Elimina el margen automático */
+}
+
+.apropos-text h2 {
+  margin-bottom: 10px;
+  text-align: center; /* Centrar el título */
+}
+
+.apropos-text p {
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 768px) {
+  .apropos-section2-container {
+    flex-direction: column; /* Cambia a disposición vertical en móviles */
+    padding: 40px; /* Reduce el padding en pantallas pequeñas */
+  }
+
+  .apropos-image {
+    width: 100%; /* Aumenta el tamaño de la imagen en móviles para que no sea demasiado pequeña */
+    max-width: 100%; /* Aumenta el tamaño máximo de la imagen en pantallas pequeñas */
+    margin-left: 0; /* Elimina el margen izquierdo */
+    margin-top: 50px; /* Añade espacio encima de la imagen */
+    border-radius: 10px;
+  }
+
+  .apropos-text {
+    max-width: 100%; /* Permite que el texto ocupe todo el ancho en móviles */
+    margin: 0 auto; /* Centrar el texto en la pantalla */
+  }
+}

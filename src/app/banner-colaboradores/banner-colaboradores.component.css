@@ -1,0 +1,28 @@
+.banner-wrapper {
+  overflow: hidden;
+  width: 100%;
+  background-color: #8D6E63; /* Fondo del banner */
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: max-content;
+  animation: scroll 60s linear infinite;
+}
+
+.banner-content img {
+  width: 150px; /* Ajusta el tamaño de los logotipos */
+  height: auto;
+  padding: 10px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

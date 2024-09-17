@@ -1,0 +1,50 @@
+.apropos-section1-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  flex-direction: row; /* Layout horizontal por defecto */
+  /* background-color: ; */
+}
+
+.apropos-image {
+  width: 100%; /* Tamaño más grande para pantallas grandes */
+  max-width: 60vh; /* Tamaño máximo de la imagen en pantallas grandes */
+  margin-right: 10px; /* Espacio entre la imagen y el texto */
+  border-radius: 50px;
+}
+
+.apropos-text {
+  max-width: 50%; /* Ajuste del ancho del texto en pantallas grandes */
+  text-align: justify; /* Justificar el texto para una mejor legibilidad */
+  margin: 200px; /* Elimina el margen automático */
+}
+
+.apropos-text h2 {
+  margin-bottom: 10px;
+  text-align: center; /* Centrar el título */
+}
+
+.apropos-text p {
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+@media (max-width: 768px) {
+  .apropos-section1-container {
+    flex-direction: column; /* Cambia a disposición vertical en móviles */
+    padding: 40px; /* Reduce el padding en pantallas pequeñas */
+  }
+
+  .apropos-image {
+    width: 100%; /* Aumenta el tamaño de la imagen en móviles */
+    max-width: 100%; /* Tamaño máximo de la imagen en pantallas pequeñas */
+    margin-right: 0; /* Elimina el margen derecho */
+    margin-bottom: 50px; /* Añade espacio debajo de la imagen */
+    border-radius: 10px;
+  }
+
+  .apropos-text {
+    max-width: 100%; /* Permite que el texto ocupe todo el ancho en móviles */
+    margin: 0 auto; /* Centrar el texto en la pantalla */
+  }
+}
