@@ -1,0 +1,20 @@
+/* Forzar object-contain en pantallas grandes */
+@media (min-width: 640px) {
+  .carousel2 img {
+    object-fit: contain !important;
+    height: 450px;
+  }
+}
+
+/* Forzar object-cover en pantallas pequeñas */
+@media (max-width: 639px) {
+  .carousel2 img {
+    object-fit: cover !important;
+    height: 300px; /* Cambia según lo necesites */
+    border-radius: 30px;
+
+  }
+  .carousel2 {
+    padding: 20px;
+  }
+}

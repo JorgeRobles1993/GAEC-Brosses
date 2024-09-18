@@ -1,6 +1,6 @@
 <nav class="bg-navbar-color p-4 shadow-lg">
   <div class="container mx-auto flex justify-between items-center">
-    <img src="assets/logo.png" alt="GAEC-Brosses Logo" class="logo mr-2">
+    <img src="assets/logo.png" alt="GAEC-Brosses Logo" class="logo mr-2" />
 
     <!-- Botón del menú Burger (Visible en pantallas pequeñas) -->
     <button
@@ -26,41 +26,45 @@
 
     <!-- Menú de navegación -->
     <ul
-      [ngClass]="{ 'hidden': !isMenuOpen, 'block': isMenuOpen, 'lg:flex': true }"
+      [ngClass]="{ hidden: !isMenuOpen, block: isMenuOpen, 'lg:flex': true }"
       class="lg:space-x-6 lg:block space-y-2 lg:space-y-0 absolute lg:relative bg-navbar-color w-full lg:w-auto left-0 top-16 lg:top-0"
     >
       <li>
-        <a 
-          routerLink="/" 
-          routerLinkActive="active-link" 
+        <a
+          routerLink="/"
+          routerLinkActive="active-link"
           class="text-marron hover:text-vert block text-center lg:inline-block"
           [routerLinkActiveOptions]="{ exact: true }"
-          (click)="toggleMenu()" 
-        >Accueil</a>
+          (click)="toggleMenu()"
+          >Accueil</a
+        >
       </li>
       <li>
-        <a 
-          routerLink="/visit" 
-          routerLinkActive="active-link" 
+        <a
+          routerLink="/visit"
+          routerLinkActive="active-link"
           class="text-marron hover:text-vert block text-center lg:inline-block"
           (click)="toggleMenu()"
-        >Visit</a>
+          >Visit</a
+        >
       </li>
       <li>
-        <a 
-          routerLink="/a-propos" 
-          routerLinkActive="active-link" 
+        <a
+          routerLink="/a-propos"
+          routerLinkActive="active-link"
           class="text-marron hover:text-vert block text-center lg:inline-block"
-          (click)="toggleMenu()" 
-        >À propos</a>
+          (click)="toggleMenu()"
+          >À propos</a
+        >
       </li>
       <li>
-        <a 
-          routerLink="/contact" 
-          routerLinkActive="active-link" 
+        <a
+          routerLink="/contact"
+          routerLinkActive="active-link"
           class="text-marron hover:text-vert block text-center lg:inline-block"
-          (click)="toggleMenu()" 
-        >Contact</a>
+          (click)="toggleMenu()"
+          >Contact</a
+        >
       </li>
     </ul>
   </div>

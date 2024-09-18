@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './banner-colaboradores.component.html',
-  styleUrls: ['./banner-colaboradores.component.css']
+  styleUrls: ['./banner-colaboradores.component.css'],
 })
 export class BannerColaboradoresComponent {
   colaboradores = [
@@ -20,6 +20,5 @@ export class BannerColaboradoresComponent {
     'assets/logo.png',
     'assets/logo.png',
     'assets/logo.png',
-
   ];
 }

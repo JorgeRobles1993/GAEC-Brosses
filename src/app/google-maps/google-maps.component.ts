@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './google-maps.component.html',
-  styleUrl: './google-maps.component.css'
+  styleUrl: './google-maps.component.css',
 })
-export class GoogleMapsComponent {
-
-}
+export class GoogleMapsComponent {}

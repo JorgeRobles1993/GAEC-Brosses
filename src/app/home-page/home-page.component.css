@@ -1,6 +1,6 @@
 .full-width-section {
   width: 100%;
-  background-color: #8D6E63;
+  background-color: #8d6e63;
   color: white;
   padding: 20px 0;
 }
@@ -30,9 +30,9 @@
 
 .full-width-section a:hover {
   background-color: white;
-  color: #8D6E63;
+  color: #8d6e63;
 }
 
-.carousel-section{
-    background-color: #C8E6C9; /* Color de fondo general */
+.carousel-section {
+  background-color: #c8e6c9; /* Color de fondo general */
 }

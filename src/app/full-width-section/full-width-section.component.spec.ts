@@ -8,9 +8,8 @@ describe('FullWidthSectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FullWidthSectionComponent]
-    })
-    .compileComponents();
+      imports: [FullWidthSectionComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FullWidthSectionComponent);
     component = fixture.componentInstance;

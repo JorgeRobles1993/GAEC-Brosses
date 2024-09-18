@@ -4,7 +4,7 @@
   }
   
   .video-container {
-    width: 100vw; /* Ocupa todo el ancho de la ventana */
+    width: 100%; /* Ocupa todo el ancho de la ventana */
     height: 56.25vw; /* Mantiene la relación de aspecto 16:9 basada en el ancho de la ventana */
     position: relative;
     overflow: hidden;

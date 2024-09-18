@@ -1,0 +1,14 @@
+<div class="carousel2">
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let img of images">
+      <ng-template carouselSlide [id]="img.id">
+        <img
+          class="imagecarousel w-full h-[450px] object-contain sm:object-cover max-sm:h-[300px] max-sm:p-1"
+          [src]="img.src"
+          [alt]="img.alt"
+          [title]="img.title"
+        />
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>
