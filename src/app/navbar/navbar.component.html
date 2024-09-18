@@ -1,39 +1,67 @@
 <nav class="bg-navbar-color p-4 shadow-lg">
-    <div class="container mx-auto flex justify-between items-center">
-        <img src="assets/logo.png" alt="GAEC-Brosses Logo" class="logo mr-2">
-  
-      <!-- Botón del menú Burger (Visible en pantallas pequeñas) -->
-      <button
-        class="inline-flex items-center p-2 rounded-md text-marron hover:text-vert lg:hidden"
-        (click)="toggleMenu()"
-        aria-label="Menu"
+  <div class="container mx-auto flex justify-between items-center">
+    <img src="assets/logo.png" alt="GAEC-Brosses Logo" class="logo mr-2">
+
+    <!-- Botón del menú Burger (Visible en pantallas pequeñas) -->
+    <button
+      class="inline-flex items-center p-2 rounded-md text-marron hover:text-vert lg:hidden"
+      (click)="toggleMenu()"
+      aria-label="Menu"
+    >
+      <svg
+        class="w-6 h-6"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
       >
-        <svg
-          class="w-6 h-6"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16m-7 6h7"
-          />
-        </svg>
-      </button>
-  
-      <!-- Menú de navegación -->
-      <ul
-        [ngClass]="{ 'hidden': !isMenuOpen, 'block': isMenuOpen, 'lg:flex': true }"
-        class="lg:space-x-6 lg:block space-y-2 lg:space-y-0 absolute lg:relative bg-navbar-color w-full lg:w-auto left-0 top-16 lg:top-0"
-      >
-        <li><a href="/" class="text-marron hover:text-vert block text-center lg:inline-block">Accueil</a></li>
-        <li><a href="/visit" class="text-marron hover:text-vert block text-center lg:inline-block">Visit</a></li>
-        <li><a href="/a-propos" class="text-marron hover:text-vert block text-center lg:inline-block">À propos</a></li>
-        <li><a href="/contact" class="text-marron hover:text-vert block text-center lg:inline-block">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-  
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16m-7 6h7"
+        />
+      </svg>
+    </button>
+
+    <!-- Menú de navegación -->
+    <ul
+      [ngClass]="{ 'hidden': !isMenuOpen, 'block': isMenuOpen, 'lg:flex': true }"
+      class="lg:space-x-6 lg:block space-y-2 lg:space-y-0 absolute lg:relative bg-navbar-color w-full lg:w-auto left-0 top-16 lg:top-0"
+    >
+      <li>
+        <a 
+          routerLink="/" 
+          routerLinkActive="active-link" 
+          class="text-marron hover:text-vert block text-center lg:inline-block"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="toggleMenu()" 
+        >Accueil</a>
+      </li>
+      <li>
+        <a 
+          routerLink="/visit" 
+          routerLinkActive="active-link" 
+          class="text-marron hover:text-vert block text-center lg:inline-block"
+          (click)="toggleMenu()"
+        >Visit</a>
+      </li>
+      <li>
+        <a 
+          routerLink="/a-propos" 
+          routerLinkActive="active-link" 
+          class="text-marron hover:text-vert block text-center lg:inline-block"
+          (click)="toggleMenu()" 
+        >À propos</a>
+      </li>
+      <li>
+        <a 
+          routerLink="/contact" 
+          routerLinkActive="active-link" 
+          class="text-marron hover:text-vert block text-center lg:inline-block"
+          (click)="toggleMenu()" 
+        >Contact</a>
+      </li>
+    </ul>
+  </div>
+</nav>
