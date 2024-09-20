@@ -11,6 +11,8 @@ import { ConnexionComponent } from './app/pages/connexion/connexion.component';
 import { RegisterComponent } from './app/pages/register/register.component';
 import { provideHttpClient } from '@angular/common/http';
 import { HomePageAdminComponent } from './app/pages/home-page-admin/home-page-admin.component';
+import { ActualitesComponent } from './app/pages/actualites/actualites.component';
+import { ActualiteSingleComponent } from './app/pages/actualite-single/actualite-single.component';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -25,6 +27,8 @@ bootstrapApplication(AppComponent, {
         { path: 'register', component: RegisterComponent},
         { path: 'admin', component: HomePageAdminComponent},
         { path: 'logout', component: HomePageAdminComponent},
+        { path: 'actualites', component: ActualitesComponent},
+        { path: 'actualite/:id', component: ActualiteSingleComponent},
       ],
       withComponentInputBinding()
     ),

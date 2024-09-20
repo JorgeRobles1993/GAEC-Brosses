@@ -33,3 +33,39 @@
 .actualidad-section {
   background-color: #c8e6c9; /* Color de fondo general */
 }
+
+/* Estilo del botón */
+.btn-primary {
+  background-color: #4caf50; /* Color verde */
+  color: white; /* Texto blanco */
+  padding: 12px 24px; /* Tamaño del botón */
+  font-size: 16px; /* Tamaño de fuente */
+  border: none; /* Sin bordes */
+  border-radius: 8px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor en forma de mano */
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: #388e3c; /* Color más oscuro en hover */
+  transform: translateY(-2px); /* Efecto de elevación en hover */
+}
+
+/* Elimina el subrayado del enlace dentro del botón */
+.btn-primary a {
+  text-decoration: none;
+  color: white; /* Color blanco para el texto del enlace */
+  display: block;
+}
+
+.btn-primary a:hover {
+  text-decoration: none;
+}
+
+/* Centrando el botón dentro de su contenedor */
+.text-center {
+  text-align: center;
+  margin-top: 20px;
+}
