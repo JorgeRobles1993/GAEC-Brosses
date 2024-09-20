@@ -1,5 +1,12 @@
 <nav class="bg-navbar-color p-4 shadow-lg">
   <div class="container mx-auto flex justify-between items-center">
+    <a 
+      routerLink="/admin"
+      routerLinkActive="active-link"
+      class="text-marron hover:text-vert block text-center lg:inline-block"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Admin Page</a
+    >
     <img src="assets/logo.png" alt="GAEC-Brosses Logo" class="logo mr-2" />
 
     <!-- Botón del menú Burger (Visible en pantallas pequeñas) -->
@@ -64,6 +71,29 @@
           class="text-marron hover:text-vert block text-center lg:inline-block"
           (click)="toggleMenu()"
           >Contact</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <ul>
+      <li>
+        <a
+          routerLink="/login"
+          routerLinkActive="active-link"
+          class="text-marron hover:text-vert block text-center lg:inline-block"
+          (click)="toggleMenu()"
+          >Log In</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/register"
+          routerLinkActive="active-link"
+          class="text-marron hover:text-vert block text-center lg:inline-block"
+          (click)="toggleMenu()"
+          >Register</a
         >
       </li>
     </ul>
