@@ -13,6 +13,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HomePageAdminComponent } from './app/pages/home-page-admin/home-page-admin.component';
 import { ActualitesComponent } from './app/pages/actualites/actualites.component';
 import { ActualiteSingleComponent } from './app/pages/actualite-single/actualite-single.component';
+import { AdminGuard } from './app/admin.guard';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -25,7 +26,7 @@ bootstrapApplication(AppComponent, {
         { path: 'contact', component: ContactComponent },
         { path: 'login', component: ConnexionComponent},
         { path: 'register', component: RegisterComponent},
-        { path: 'admin', component: HomePageAdminComponent},
+        { path: 'admin', component: HomePageAdminComponent, canActivate: [AdminGuard] },
         { path: 'logout', component: HomePageAdminComponent},
         { path: 'actualites', component: ActualitesComponent},
         { path: 'actualite/:id', component: ActualiteSingleComponent},

@@ -1,14 +1,19 @@
 <nav class="bg-navbar-color p-4 shadow-lg">
   <div class="container mx-auto flex justify-between items-center">
-    <a 
+    <!-- Mostrar "Admin Page" solo si el usuario tiene rol 'admin' -->
+    <a *ngIf="userRol === 'admin'"
       routerLink="/admin"
       routerLinkActive="active-link"
-      class="text-marron hover:text-vert block text-center lg:inline-block"
+      class="adminpage text-marron hover:text-vert block text-center lg:inline-block"
       [routerLinkActiveOptions]="{ exact: true }"
     >
       Admin Page
     </a>
-
+    <a
+    routerLink="/"
+    class="text-marron hover:text-vert block text-center lg:inline-block"
+    (click)="toggleMenu()"
+  >
     <img src="assets/logo.png" alt="GAEC-Brosses Logo" class="logo mr-2" />
 
     <!-- Botón del menú Burger (Visible en pantallas pequeñas) -->
@@ -32,6 +37,7 @@
         />
       </svg>
     </button>
+  </a>
 
     <!-- Menú de navegación -->
     <ul
@@ -82,9 +88,10 @@
     </ul>
   </div>
 
+  <!-- Sección de autenticación -->
   <div>
     <ul>
-      <!-- Mostrar 'Log In' y 'Register' si el usuario no está autenticado -->
+      <!-- Mostrar "Log In" y "Register" solo si el usuario no está autenticado -->
       <li *ngIf="!userName">
         <a
           routerLink="/login"
@@ -106,9 +113,9 @@
         </a>
       </li>
 
-      <!-- Mostrar 'Logout' y 'User ID' si el usuario está autenticado -->
+      <!-- Mostrar el nombre del usuario y botón de "Logout" si el usuario está autenticado -->
       <li *ngIf="userName">
-        <span class="text-marron block text-center lg:inline-block">Welcome, <strong>{{ userName }} </strong></span>
+        <span class="text-marron block text-center lg:inline-block">Welcome, <strong>{{ userName }}</strong></span>
       </li>
       <li *ngIf="userName">
         <button
@@ -116,6 +123,7 @@
           class="text-marron hover:text-vert block text-center lg:inline-block"
         >
           Logout
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
         </button>
       </li>
     </ul>
