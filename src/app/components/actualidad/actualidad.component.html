@@ -1,27 +1,27 @@
 <!-- Sección de Actualité -->
 <div class="actualidad-section py-10">
-  <div class="container mx-auto">
     <h2 class="text-2xl font-bold mb-6 text-center">Actualité</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div
-        *ngFor="let card of cards"
-        class="card bg-white rounded-lg shadow-md overflow-hidden"
-      >
+    <div class="posts-grid" *ngIf="posts.length > 0; else noPosts">
+      <div (click)="redirectToSinglePost(post.id)" *ngFor="let post of posts.slice().reverse() | slice:0:3" class="post-card">
         <img
-          [src]="card.imageUrl"
-          [alt]="card.title"
+          [src]="post.image"
+          [alt]="post.titre"
           class="w-full h-48 object-cover"
         />
         <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">{{ card.title }}</h3>
-          <p class="text-gray-600">{{ card.description }}</p>
+          <h3 class="text-xl font-semibold mb-2">{{ post.titre }}</h3>
+          <p class="text-gray-600">{{ post.content }}</p>
         </div>
+        <small>Publié le: {{ post.created_at | date }}</small>
       </div>
     </div>
-  </div>
   <div class="text-center mt-8">
     <button class="btn-primary">
       <a href="/actualites">Voir tous les actualités</a>
     </button>
   </div>
+
+  <ng-template #noPosts>
+    <p>Aucun post disponible pour le moment.</p>
+  </ng-template>
 </div>

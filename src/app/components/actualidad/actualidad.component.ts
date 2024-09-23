@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-actualidad',
@@ -8,29 +10,26 @@ import { CommonModule } from '@angular/common';
   templateUrl: './actualidad.component.html',
   styleUrls: ['./actualidad.component.css'],
 })
-export class ActualidadComponent {
+export class ActualidadComponent implements OnInit {
   // Definición de las tarjetas en francés
-  cards = [
-    {
-      id: 1,
-      title: 'Nouvelles de la Ferme',
-      description:
-        'Découvrez les dernières nouvelles de notre ferme, y compris les nouvelles arrivées et les événements récents.',
-      imageUrl: 'assets/images/actualite1.jpg',
-    },
-    {
-      id: 2,
-      title: 'Événements à venir',
-      description:
-        'Restez informé sur les prochains événements que nous organisons, de la foire agricole aux visites guidées.',
-      imageUrl: 'assets/images/actualite2.jpg',
-    },
-    {
-      id: 3,
-      title: 'Visiter la Ferme',
-      description:
-        "Venez découvrir notre exploitation agricole lors d'une visite guidée. Nous serons ravis de partager notre passion avec vous!",
-      imageUrl: 'assets/images/actualite3.jpg',
-    },
-  ];
+  posts: any[] = [];
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit() {
+    this.authService.getPosts().subscribe(
+      (data: any) => {
+        this.posts = data;
+        console.log('Posts récupérés:', this.posts);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des actualités:', error);
+      }
+    );
+  }
+
+  redirectToSinglePost(id: number) {
+    //redirection to single post
+    this.router.navigate(['/actualite', id]);
+  }
 }

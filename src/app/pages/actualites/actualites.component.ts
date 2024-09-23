@@ -16,7 +16,6 @@ export class ActualitesComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    // Llamar a getPosts cuando el componente se inicializa
     this.getPosts();
   }
 

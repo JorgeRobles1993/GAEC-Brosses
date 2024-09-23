@@ -23,7 +23,10 @@ export class AuthService {
       tap((response: any) => {
         // Guardar el token en localStorage después del login exitoso
         localStorage.setItem('authToken', response.token);
-        localStorage.setItem('rol', response.rol);
+        localStorage.setItem('user', response.user);
+        localStorage.setItem('user_email', response.user_email);
+        localStorage.setItem('user_rol', response.user_rol);
+        localStorage.setItem('user_name', response.user_name);
       })
     );
   }
@@ -45,6 +48,11 @@ export class AuthService {
       tap(() => {
         // Eliminar el token del localStorage después del logout
         localStorage.removeItem('authToken');
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('user_email');
+        localStorage.removeItem('user_rol');
+        localStorage.removeItem('user_name');
+        
       })
     );
   }
@@ -72,20 +80,38 @@ export class AuthService {
     return this.http.get(`${this.apiUrl}/api/actualites`);
   }
 
-  // Méthode pour récupérer une seule actualite (non protégé)
-  getSinglePost(idPost: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/actualites/ ${idPost}`);
-  }
   // 6. Verificar si el usuario está autenticado
-  isLoggedIn(): boolean {
-    // Verificar si el token existe en localStorage
-    return localStorage.getItem('authToken') !== null;
+  isLoggedIn(): { isLoggedIn: boolean, userId: string | null } {
+    const token = localStorage.getItem('authToken');
+    const userId = localStorage.getItem('user');
+  
+    if (token && userId) {
+      return { isLoggedIn: true, userId };
+    } else {
+      return { isLoggedIn: false, userId: null };
+    }
   }
-
+  
   isAdmin(token: any): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
     return this.http.get(`${this.apiUrl}/api/isAdmin`, { headers });
   }
+  
+  // Méthode pour récupérer une seule actualite (non protégé)
+  getSinglePost(idPost: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/api/actualites/ ${idPost}`);
+  }
+
+
+    // Obtener los datos del usuario autenticado desde localStorage
+    getUserFromLocalStorage(): any {
+      return {
+        id: localStorage.getItem('user_id'),
+        email: localStorage.getItem('user_email'),
+        rol: localStorage.getItem('user_rol'),
+        name: localStorage.getItem('user_name')
+      };
+    }
 }

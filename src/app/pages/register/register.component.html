@@ -12,6 +12,7 @@
       <input id="confirmPassword" type="password" formControlName="confirmPassword" />
       
       <button type="submit" [disabled]="registerForm.invalid">Register</button>
+      <small (click)="redirectToLogin()">Vous avez deja un compte? Log-In!</small>
     </form>
   </div>
   

@@ -45,4 +45,8 @@ export class ConnexionComponent {
       });
     }
   }
+
+  redirectToRegister(){
+    this.router.navigate(['/register']);
+  }
 }
