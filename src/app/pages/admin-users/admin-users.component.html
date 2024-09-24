@@ -1,1 +1,79 @@
-<p>admin-users works!</p>
+<h1>Gestion des Utilisateurs</h1>
+<button class="btn btn-back" (click)="goToAdminDashboard()">Retour au Dashboard</button>
+<!-- Tabla de usuarios -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Email</th>
+      <th>Numéro de Téléphone</th>
+      <th>Rôle</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.telefono || 'Non disponible' }}</td>
+      <td>{{ user.rol }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="startEditing(user)">Éditer</button>
+        <button class="btn btn-danger" (click)="confirmDelete(user)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal para el formulario de edición -->
+<div *ngIf="isEditing" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="cancelEditing()">&times;</span>
+    <h2>Éditer l'utilisateur</h2>
+    <form [formGroup]="editForm" (ngSubmit)="saveChanges()">
+      <label for="name">Nom:</label>
+      <input id="name" formControlName="name" type="text" />
+      <div *ngIf="formControls['name']?.invalid && formControls['name']?.touched">
+        Nom requis
+      </div>
+
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="email" />
+      <div *ngIf="formControls['email']?.invalid && formControls['email']?.touched">
+        Email invalide
+      </div>
+
+      <label for="telefono">Numéro de Téléphone:</label>
+      <input id="telefono" formControlName="telefono" type="text" />
+      <div *ngIf="formControls['telefono']?.invalid && formControls['telefono']?.touched">
+        Numéro de téléphone invalide
+      </div>
+
+      <label for="rol">Rôle:</label>
+      <select id="rol" formControlName="rol" class="form-select">
+        <option value="user">Utilisateur</option>
+        <option value="admin">Administrateur</option>
+      </select>
+      <div *ngIf="formControls['rol']?.invalid && formControls['rol']?.touched">
+        Le rôle est requis.
+      </div>
+      
+
+
+      <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Sauvegarder</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelEditing()">Annuler</button>
+    </form>
+  </div>
+</div>
+
+
+<!-- Modal para confirmar eliminación -->
+<div *ngIf="isDeleteModalOpen" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeDeleteModal()">&times;</span>
+    <h2>Confirmer la suppression</h2>
+    <p>Êtes-vous sûr de vouloir supprimer l'utilisateur <strong>{{ userToDelete?.name }}</strong> ?</p>
+    <button class="btn btn-danger" (click)="deleteUser()">Supprimer</button>
+    <button class="btn btn-secondary" (click)="closeDeleteModal()">Annuler</button>
+  </div>
+</div>

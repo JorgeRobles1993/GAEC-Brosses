@@ -126,4 +126,24 @@ export class AuthService {
   getLastPost(): Observable<any> {
     return this.http.get(`${this.apiUrl}/api/last-post`);  // Llamada a la nueva ruta de la API
   }
+
+  updateUser(id: number, updatedUser: any, token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    console.log('Enviando el siguiente cuerpo de datos:', updatedUser); // Para depurar
+  
+    return this.http.put(`${this.apiUrl}/api/user/${id}`, updatedUser, { headers });
+  }
+  
+  deleteUser(id: number, token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+  
+    return this.http.delete(`${this.apiUrl}/api/user/${id}`, { headers });
+  }
+  
 }
+
+
