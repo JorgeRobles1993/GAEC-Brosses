@@ -1,4 +1,42 @@
-<div *ngIf="tokenOk">
-  <p>home-page-admin works!</p>
+<div class="admin-container">
+  <!-- En-tête -->
+  <header class="admin-header">
+    <h1>Bienvenue, {{ userName }}</h1>
+    <button (click)="logout()" class="btn-logout">Déconnexion</button>
+  </header>
+
+  <!-- Section des métriques importantes -->
+  <section class="metrics">
+    <div class="metric-box">
+      <h3>Total des utilisateurs</h3>
+      <p>{{ users.length }}</p>
+    </div>
+    <div class="metric-box">
+      <h3>Total des publications</h3>
+      <p>{{ posts.length }}</p>
+    </div>
+    <div class="metric-box">
+      <h3>Dernière publication</h3>
+      <p>{{ post?.titre || 'Non disponible' }}</p>
+    </div>
+  </section>
+
+  <!-- Boutons d'administration -->
+  <section class="admin-buttons">
+    <button (click)="goToActualites()" class="btn-admin">Gérer Actualités</button>
+    <button (click)="goToReservations()" class="btn-admin">Gérer Réservations</button>
+    <button (click)="goToUsers()" class="btn-admin">Gérer Utilisateurs</button>
+  </section>
+
+  <!-- Informations supplémentaires -->
+  <section class="additional-info">
+    <h2>Informations supplémentaires</h2>
+    <p>Dernière mise à jour : {{ lastUpdate | date: 'short' }}</p>
+    <p>Nouvelles réservations aujourd'hui : {{ newReservations }}</p>
+  </section>
 </div>
-<div *ngIf="!tokenOk">pas acces</div>
+
+<!-- Message d'erreur si le jeton n'est pas valide -->
+<div *ngIf="!tokenOk" class="error-message">
+  <p>Vous n'avez pas accès à cette page.</p>
+</div>

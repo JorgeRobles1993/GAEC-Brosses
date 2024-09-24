@@ -14,6 +14,9 @@ import { HomePageAdminComponent } from './app/pages/home-page-admin/home-page-ad
 import { ActualitesComponent } from './app/pages/actualites/actualites.component';
 import { ActualiteSingleComponent } from './app/pages/actualite-single/actualite-single.component';
 import { AdminGuard } from './app/admin.guard';
+import { AdminActualitesComponent } from './app/pages/admin-actualites/admin-actualites.component';
+import { AdminReservationsComponent } from './app/pages/admin-reservations/admin-reservations.component';
+import { AdminUsersComponent } from './app/pages/admin-users/admin-users.component';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -30,6 +33,9 @@ bootstrapApplication(AppComponent, {
         { path: 'logout', component: HomePageAdminComponent},
         { path: 'actualites', component: ActualitesComponent},
         { path: 'actualite/:id', component: ActualiteSingleComponent},
+        { path: 'admin-actualites', component: AdminActualitesComponent},
+        { path: 'admin-reservations', component: AdminReservationsComponent},
+        { path: 'admin-users', component: AdminUsersComponent},
       ],
       withComponentInputBinding()
     ),

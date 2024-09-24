@@ -122,4 +122,8 @@ export class AuthService {
       name: localStorage.getItem('user_name'),
     };
   }
+
+  getLastPost(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/api/last-post`);  // Llamada a la nueva ruta de la API
+  }
 }
