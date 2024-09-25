@@ -14,19 +14,21 @@ import { ReactiveFormsModule } from '@angular/forms'; // Asegurarse de importar 
 })
 export class AdminUsersComponent implements OnInit {
   users: any[] = [];
-  editForm: FormGroup; // Formulario de edición
+  editForm: FormGroup; // Formulario de edición/creación
   selectedUser: any = null; // Usuario seleccionado para editar
   isEditing: boolean = false; // Controla si estamos en modo edición
   userToDelete: any = null; // Usuario seleccionado para eliminar
-isDeleteModalOpen: boolean = false; // Controla si el modal de eliminación está abierto
-  
+  isDeleteModalOpen: boolean = false; // Controla si el modal de eliminación está abierto
+  isCreating: boolean = false; // Controla si estamos en modo creación
+
   constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) {
-    // Inicializar el formulario de edición
+    // Inicializar el formulario de edición/creación
     this.editForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       telefono: ['', [Validators.required, Validators.pattern('^[0-9]+$')]], // Validación para números de teléfono
       rol: ['', [Validators.required]],
+      password: [''], // Contraseña no es requerida por defecto, pero se añadirá condicionalmente
     });
   }
 
@@ -51,6 +53,11 @@ isDeleteModalOpen: boolean = false; // Controla si el modal de eliminación est�
   startEditing(user: any) {
     this.selectedUser = user;
     this.isEditing = true;
+    this.isCreating = false;
+
+    // Quitar la validación de contraseña al editar
+    this.editForm.get('password')?.clearValidators();
+    this.editForm.get('password')?.updateValueAndValidity();
 
     // Rellenar el formulario con los datos del usuario seleccionado
     this.editForm.patchValue({
@@ -61,39 +68,55 @@ isDeleteModalOpen: boolean = false; // Controla si el modal de eliminación est�
     });
   }
 
-  // Método para guardar los cambios
+  // Guardar los cambios en un usuario (creación o edición)
   saveChanges() {
-    if (this.editForm.valid && this.selectedUser) {
-      const updatedUser = {
-        ...this.selectedUser,
-        ...this.editForm.value,
-      };
-
+    if (this.editForm.valid) {
+      const updatedUser = this.editForm.value;
+  
+      // Solo incluimos el campo "password" si fue modificado (si no, no lo enviamos)
+      if (!updatedUser.password) {
+        delete updatedUser.password; // Si no se introduce password, lo eliminamos del objeto
+      }
+  
       const token = localStorage.getItem('authToken');
       if (token) {
-        this.authService.updateUser(this.selectedUser.id, updatedUser, token).subscribe(
-          (response: any) => {
-            // Actualizar la lista de usuarios
-            const index = this.users.findIndex(u => u.id === this.selectedUser.id);
-            if (index !== -1) {
-              this.users[index] = response;
+        if (this.isCreating) {
+          // Crear un nuevo usuario
+          this.authService.createUser(updatedUser, token).subscribe(
+            (response) => {
+              this.users.push(response);
+              this.isCreating = false;
+              this.editForm.reset(); // Resetea el formulario
+            },
+            (error) => {
+              console.error('Erreur lors de la création de l\'utilisateur:', error);
             }
-            this.isEditing = false; // Salir del modo edición
-          },
-          (error) => {
-            console.error('Error al actualizar el usuario:', error);
-          }
-        );
-      } else {
-        console.error('Token no encontrado para la actualización');
+          );
+        } else if (this.isEditing && this.selectedUser) {
+          // Actualizar el usuario
+          this.authService.updateUser(this.selectedUser.id, updatedUser, token).subscribe(
+            (response) => {
+              const index = this.users.findIndex(user => user.id === this.selectedUser.id);
+              if (index !== -1) {
+                this.users[index] = response;
+              }
+              this.isEditing = false;
+              this.selectedUser = null;
+              this.editForm.reset(); // Resetea el formulario
+            },
+            (error) => {
+              console.error('Erreur lors de la mise à jour de l\'utilisateur:', error);
+            }
+          );
+        }
       }
     }
   }
 
-  // Cancelar la edición
-  cancelEditing() {
+  // Cancelar la edición o creación
+  cancelCreationOrEditing() {
+    this.isCreating = false;
     this.isEditing = false;
-    this.selectedUser = null;
     this.editForm.reset(); // Resetear el formulario
   }
 
@@ -106,37 +129,46 @@ isDeleteModalOpen: boolean = false; // Controla si el modal de eliminación est�
     return this.editForm.controls;
   }
 
+  // Cerrar el modal sin eliminar el usuario
+  closeDeleteModal() {
+    this.isDeleteModalOpen = false;
+    this.userToDelete = null; // Limpiar el usuario seleccionado
+  }
 
-// Cerrar el modal sin eliminar el usuario
-closeDeleteModal() {
-  this.isDeleteModalOpen = false;
-  this.userToDelete = null; // Limpiar el usuario seleccionado
-}
-
-// Eliminar al usuario
-deleteUser() {
-  if (this.userToDelete) {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      this.authService.deleteUser(this.userToDelete.id, token).subscribe(
-        (response) => {
-          // Eliminar el usuario de la lista local
-          this.users = this.users.filter(user => user.id !== this.userToDelete.id);
-          this.closeDeleteModal(); // Cerrar el modal después de eliminar
-        },
-        (error) => {
-          console.error('Error al eliminar el usuario:', error);
-        }
-      );
+  // Eliminar al usuario
+  deleteUser() {
+    if (this.userToDelete) {
+      const token = localStorage.getItem('authToken');
+      if (token) {
+        this.authService.deleteUser(this.userToDelete.id, token).subscribe(
+          (response) => {
+            // Eliminar el usuario de la lista local
+            this.users = this.users.filter(user => user.id !== this.userToDelete.id);
+            this.closeDeleteModal(); // Cerrar el modal después de eliminar
+          },
+          (error) => {
+            console.error('Error al eliminar el usuario:', error);
+          }
+        );
+      }
     }
   }
-}
 
-// Abre el modal de confirmación para eliminar al usuario
-confirmDelete(user: any) {
-  this.userToDelete = user; // Guardar el usuario que se va a eliminar
-  this.isDeleteModalOpen = true; // Abrir el modal de confirmación
-}
+  // Abre el modal de confirmación para eliminar al usuario
+  confirmDelete(user: any) {
+    this.userToDelete = user; // Guardar el usuario que se va a eliminar
+    this.isDeleteModalOpen = true; // Abrir el modal de confirmación
+  }
 
+  // Iniciar la creación de un nuevo usuario
+  startCreating() {
+    this.isCreating = true;
+    this.isEditing = false;
 
+    // Añadir la validación de contraseña al crear
+    this.editForm.get('password')?.setValidators([Validators.required]);
+    this.editForm.get('password')?.updateValueAndValidity();
+
+    this.editForm.reset(); // Limpiar el formulario para un nuevo usuario
+  }
 }

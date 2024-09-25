@@ -1,33 +1,76 @@
+/* Aplicar flexbox en la estructura principal */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* El contenido principal del router-outlet debe ocupar el espacio restante */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos del navbar */
+nav {
+  background-color: #d7ccc8;
+}
+
+/* Footer */
 .bg-footer-color {
-    background-color: #6D4C41;
+  background-color: #6D4C41;
+  color: #F5F5DC; /* Texto beige claro */
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+}
+
+/* Enlaces y colores de hover */
+a:hover {
+  text-decoration: underline;
+}
+
+.text-vert {
+  color: #4CAF50;
+}
+
+.hover\:text-blue-400:hover {
+  color: #1DA1F2; /* Twitter */
+}
+
+.hover\:text-blue-600:hover {
+  color: #1877F2; /* Facebook */
+}
+
+.hover\:text-pink-600:hover {
+  color: #E4405F; /* Instagram */
+}
+
+.hover\:text-red-600:hover {
+  color: #FF0000; /* YouTube */
+}
+
+h5 {
+  color: #F5F5DC;
+  font-size: 1.25rem;
+}
+
+/* Footer siempre pegado al fondo */
+.footer {
+  background-color: #6D4C41;
+  color: #F5F5DC;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  bottom: 0;
+}
+
+/* Responsive: ajustar padding y tamaño de fuente en pantallas pequeñas */
+@media (max-width: 600px) {
+  .footer {
+    padding: 15px;
+    font-size: 0.9rem;
   }
-  
-  .text-vert {
-    color: #4CAF50;
-  }
-  
-  .hover\:text-blue-400:hover {
-    color: #1DA1F2; /* Twitter */
-  }
-  
-  .hover\:text-blue-600:hover {
-    color: #1877F2; /* Facebook */
-  }
-  
-  .hover\:text-pink-600:hover {
-    color: #E4405F; /* Instagram */
-  }
-  
-  .hover\:text-red-600:hover {
-    color: #FF0000; /* YouTube */
-  }
-  
-  h5 {
-    color: #F5F5DC; /* Beige claro */
-    font-size: 1.25rem;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
+}

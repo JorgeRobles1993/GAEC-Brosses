@@ -62,10 +62,16 @@ export class AuthService {
   }
 
   // 4. REGISTER
-  register(email: string, password: string): Observable<any> {
-    const body = { email, password };
-    return this.http.post(`${this.apiUrl}/api/register`, body);
+  register(userData: any): Observable<any> {
+    // Asegúrate de que estás usando POST
+    return this.http.post(`${this.apiUrl}/api/register`, userData);
   }
+  
+
+   // Método para registrar un usuario
+  //  register(data: any): Observable<any> {
+  //   return this.http.post(`${this.apiUrl}/register`, data);
+  // }
 
   // 5. RECUPERER UN USER
   getUser(): Observable<any> {
@@ -142,6 +148,15 @@ export class AuthService {
     });
   
     return this.http.delete(`${this.apiUrl}/api/user/${id}`, { headers });
+  }
+  
+  createUser(user: any, token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+  
+    return this.http.post(`${this.apiUrl}/api/users`, user, { headers });
   }
   
 }

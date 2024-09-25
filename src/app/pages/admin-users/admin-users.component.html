@@ -1,5 +1,6 @@
 <h1>Gestion des Utilisateurs</h1>
 <button class="btn btn-back" (click)="goToAdminDashboard()">Retour au Dashboard</button>
+<button class="btn btn-success" (click)="startCreating()">Créer un nouveau utilisateur</button>
 <!-- Tabla de usuarios -->
 <table class="table">
   <thead>
@@ -25,11 +26,12 @@
   </tbody>
 </table>
 
-<!-- Modal para el formulario de edición -->
-<div *ngIf="isEditing" class="modal">
+<!-- Modal para el formulario de creación/edición de usuario -->
+<div *ngIf="isCreating || isEditing" class="modal">
   <div class="modal-content">
-    <span class="close" (click)="cancelEditing()">&times;</span>
-    <h2>Éditer l'utilisateur</h2>
+    <span class="close" (click)="cancelCreationOrEditing()">&times;</span>
+    <h2 *ngIf="isCreating">Créer un utilisateur</h2>
+    <h2 *ngIf="isEditing">Éditer l'utilisateur</h2>
     <form [formGroup]="editForm" (ngSubmit)="saveChanges()">
       <label for="name">Nom:</label>
       <input id="name" formControlName="name" type="text" />
@@ -57,11 +59,17 @@
       <div *ngIf="formControls['rol']?.invalid && formControls['rol']?.touched">
         Le rôle est requis.
       </div>
-      
 
+      <label for="password">Mot de passe:</label>
+      <input id="password" formControlName="password" type="password" />
+      <div *ngIf="formControls['password']?.invalid && formControls['password']?.touched">
+        Mot de passe requis
+      </div>
 
-      <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Sauvegarder</button>
-      <button type="button" class="btn btn-secondary" (click)="cancelEditing()">Annuler</button>
+      <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">
+        {{ isCreating ? 'Créer' : 'Sauvegarder' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="cancelCreationOrEditing()">Annuler</button>
     </form>
   </div>
 </div>
