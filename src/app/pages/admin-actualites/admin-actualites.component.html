@@ -1,22 +1,101 @@
 <h1>Gestion des Actualités</h1>
 
-<button class="btn btn-back" (click)="goToAdminDashboard()">Retour au Dashboard</button>
+<div class="button-container">
+  <button class="btn btn-back" (click)="goToAdminDashboard()">Retour au Dashboard</button>
+  <button class="btn btn-create" (click)="openCreateModal()">Créer une nouvelle actualité</button>
+</div>
+
 <table class="table">
   <thead>
     <tr>
       <th>Titre</th>
+      <th>Contenu</th>
       <th>Date</th>
+      <th>Image</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let actualite of actualites">
       <td>{{ actualite.titre }}</td>
+      <td>{{ actualite.content }}</td>
       <td>{{ actualite.created_at | date:'short' }}</td>
       <td>
-        <button class="btn btn-primary">Éditer</button>
-        <button class="btn btn-danger">Supprimer</button>
+        <!-- Mostrar la imagen si existe -->
+        <img *ngIf="actualite.image" [src]="actualite.image" alt="{{ actualite.titre }}" width="100" height="100"/>
+        <!-- Mostrar mensaje si no hay imagen -->
+        <span *ngIf="!actualite.image">Pas d'image</span>
+      </td>
+      <td>
+        <button class="btn btn-primary" (click)="openEditModal(actualite)">Éditer</button>
+        <button class="btn btn-danger" (click)="confirmDelete(actualite)">Supprimer</button>
       </td>
     </tr>
   </tbody>
 </table>
+
+
+<!-- Modal para editar una actualité -->
+<div *ngIf="isEditModalOpen" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeEditModal()">&times;</span>
+    <h2>Éditer l'actualité</h2>
+    <form [formGroup]="editForm" (ngSubmit)="saveChanges()">
+      <label for="titre">Titre:</label>
+      <input id="titre" formControlName="titre" type="text" />
+      <div *ngIf="editForm.controls['titre'].invalid && editForm.controls['titre'].touched">
+        Le titre est requis.
+      </div>
+
+      <label for="content">Contenu:</label>
+      <textarea id="content" formControlName="content"></textarea>
+      <div *ngIf="editForm.controls['content'].invalid && editForm.controls['content'].touched">
+        Le contenu est requis.
+      </div>
+
+      <label for="image">Image (URL):</label>
+      <input id="image" formControlName="image" type="text" />
+
+      <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Sauvegarder</button>
+      <button type="button" class="btn btn-secondary" (click)="closeEditModal()">Annuler</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal para confirmar eliminación -->
+<div *ngIf="isDeleteModalOpen" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeDeleteModal()">&times;</span>
+    <h2>Confirmer la suppression</h2>
+    <p>Êtes-vous sûr de vouloir supprimer l'actualité <strong>{{ actualiteToDelete?.titre }}</strong> ?</p>
+    <button class="btn btn-danger" (click)="deleteActualite()">Supprimer</button>
+    <button class="btn btn-secondary" (click)="closeDeleteModal()">Annuler</button>
+  </div>
+</div>
+
+<!-- Modal para crear una nueva actualité -->
+<div *ngIf="isCreateModalOpen" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeCreateModal()">&times;</span>
+    <h2>Créer une nouvelle actualité</h2>
+    <form [formGroup]="createForm" (ngSubmit)="createActualite()">
+      <label for="titre">Titre:</label>
+      <input id="titre" formControlName="titre" type="text" />
+      <div *ngIf="formControls['titre']?.invalid && formControls['titre']?.touched" class="error-message">
+        <small>Le titre est requis.</small>
+      </div>
+
+      <label for="content">Contenu:</label>
+      <textarea id="content" formControlName="content"></textarea>
+      <div *ngIf="formControls['content']?.invalid && formControls['content']?.touched" class="error-message">
+        <small>Le contenu est requis.</small>
+      </div>
+
+      <label for="image">Image (URL):</label>
+      <input id="image" formControlName="image" type="text" />
+      
+      <button type="submit" class="btn btn-primary" [disabled]="createForm.invalid">Créer</button>
+      <button type="button" class="btn btn-secondary" (click)="closeCreateModal()">Annuler</button>
+    </form>
+  </div>
+</div>

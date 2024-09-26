@@ -158,6 +158,35 @@ export class AuthService {
   
     return this.http.post(`${this.apiUrl}/api/users`, user, { headers });
   }
+
+  getToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
+
+  deletePost(id: number): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.apiUrl}/api/actualites/${id}`;
+    return this.http.delete(url, { headers });
+  }
+
+  // Método para actualizar una publicación
+  updatePost(id: number, updatedData: any): Observable<any> {
+    const token = this.getToken(); // Obtener el token del localStorage
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.apiUrl}/api/actualites/${id}`;
+    return this.http.put(url, updatedData, { headers });
+  }
+  
+  createActualite(actualite: any): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+  
+    return this.http.post(`${this.apiUrl}/api/actualites`, actualite, { headers });
+  }
   
 }
 

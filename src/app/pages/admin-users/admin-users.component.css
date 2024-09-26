@@ -1,9 +1,10 @@
 /* Estilos para la tabla de usuarios */
 .table {
-  width: 100%;
-  margin-top: 20px;
+  width: 99%;
   border-collapse: collapse;
-  font-size: 16px;
+  margin: 10px;
+  font-size: 18px;
+  text-align: left;
 }
 
 .table th, .table td {
@@ -36,7 +37,6 @@
   border-radius: 4px;
   border: none;
   cursor: pointer;
-  font-size: 16px; /* Tamaño de fuente consistente */
 }
 
 .btn-primary {
@@ -70,7 +70,6 @@
 .btn-success {
   background-color: #28a745; /* Verde para crear */
   color: white;
-  font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
@@ -86,7 +85,6 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 20px;
 }
 
 .btn-back:hover {
@@ -200,4 +198,19 @@ input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
     font-size: 14px;
     padding: 8px 16px;
   }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Espacio entre los botones */
+  margin: 20px 0; /* Margen superior e inferior para separación */
+}
+
+h1 {
+  color: #2c3e50;
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 20px;
 }
