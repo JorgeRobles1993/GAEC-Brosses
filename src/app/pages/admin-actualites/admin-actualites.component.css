@@ -1,9 +1,9 @@
 /* Estilos generales para la tabla y las acciones */
 .table {
-  width: 100%; /* Ajustar el ancho al 100% */
+  width: 99%; /* Ajustar el ancho al 100% */
   max-width: 100%; /* No exceder el 100% del contenedor */
   border-collapse: collapse;
-  margin: 10px 0;
+  margin: 10px;
   font-size: 18px;
   text-align: left;
   table-layout: fixed; /* Hace que las columnas tengan el mismo ancho */

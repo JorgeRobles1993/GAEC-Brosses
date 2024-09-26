@@ -17,10 +17,14 @@ import { AdminGuard } from './app/admin.guard';
 import { AdminActualitesComponent } from './app/pages/admin-actualites/admin-actualites.component';
 import { AdminReservationsComponent } from './app/pages/admin-reservations/admin-reservations.component';
 import { AdminUsersComponent } from './app/pages/admin-users/admin-users.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
+    importProvidersFrom(CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })),
     provideRouter(
       [
         { path: '', component: HomePageComponent },

@@ -188,6 +188,25 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/api/actualites`, actualite, { headers });
   }
   
+  // Obtener todas las reservaciones
+  getReservations(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/reservations`);
+  }
+
+  // Crear una nueva reservación
+  createReservation(reservationData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reservations`, reservationData);
+  }
+
+  // Actualizar una reservación
+  updateReservation(id: number, reservationData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/reservations/${id}`, reservationData);
+  }
+
+  // Eliminar una reservación
+  deleteReservation(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/reservations/${id}`);
+  }
 }
 
 

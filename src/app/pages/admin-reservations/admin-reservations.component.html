@@ -1,23 +1,26 @@
-<!-- <h1>Gestion des Réservations</h1>
+<div>
+  <button (click)="setView(CalendarView.Month)">Month</button>
+  <button (click)="setView(CalendarView.Week)">Week</button>
+  <button (click)="setView(CalendarView.Day)">Day</button>
+</div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Date</th>
-      <th>Statut</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let reservation of reservations">
-      <td>{{ reservation.nom }}</td>
-      <td>{{ reservation.date | date:'short' }}</td>
-      <td>{{ reservation.statut }}</td>
-      <td>
-        <button class="btn btn-primary">Éditer</button>
-        <button class="btn btn-danger">Supprimer</button>
-      </td>
-    </tr>
-  </tbody>
-</table> -->
+<calendar-month-view
+  *ngIf="view === CalendarView.Month"
+  [viewDate]="viewDate"
+  [events]="events"
+  (eventClicked)="handleEventClick($event)">
+</calendar-month-view>
+
+<calendar-week-view
+  *ngIf="view === CalendarView.Week"
+  [viewDate]="viewDate"
+  [events]="events"
+  (eventClicked)="handleEventClick($event)">
+</calendar-week-view>
+
+<calendar-day-view
+  *ngIf="view === CalendarView.Day"
+  [viewDate]="viewDate"
+  [events]="events"
+  (eventClicked)="handleEventClick($event)">
+</calendar-day-view>

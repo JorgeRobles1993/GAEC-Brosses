@@ -1,32 +1,55 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../auth.service';
+import { CalendarEvent, CalendarView } from 'angular-calendar';
+import { CommonModule } from '@angular/common';
+import { startOfDay, addHours, addDays } from 'date-fns';
 import { Router } from '@angular/router';
+import { CalendarModule } from 'angular-calendar';
 
 @Component({
   selector: 'app-admin-reservations',
   standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule, // Import the full CalendarModule
+  ],
   templateUrl: './admin-reservations.component.html',
-  styleUrls: ['./admin-reservations.component.css'],
+  styleUrls: ['./admin-reservations.component.css']
 })
 export class AdminReservationsComponent implements OnInit {
-  reservations: any[] = [];
+  view: CalendarView = CalendarView.Month;
+  viewDate: Date = new Date();
+  events: CalendarEvent[] = [];
 
-  constructor(private authService: AuthService, private router: Router) {}
+  CalendarView = CalendarView;
 
-  ngOnInit() {
-    // Aquí puedes agregar una llamada para obtener las reservaciones de la API
-    // Supón que tienes un servicio getReservations
-    // this.authService.getReservations().subscribe(
-    //   (data: any) => {
-    //     this.reservations = data;
-    //   },
-    //   (error) => {
-    //     console.error('Erreur lors de la récupération des réservations:', error);
-    //   }
-    // );
-
+  ngOnInit(): void {
+    // Simulate some events
+    this.events = [
+      {
+        start: startOfDay(new Date()),
+        title: 'Test Reservation 1',
+        color: { primary: '#1e90ff', secondary: '#D1E8FF' },
+      },
+      {
+        start: addHours(new Date(), 2),
+        end: addHours(new Date(), 4),
+        title: 'Test Reservation 2',
+        color: { primary: '#e3bc08', secondary: '#FDF1BA' },
+        allDay: false,
+      },
+      {
+        start: addDays(new Date(), 1),
+        title: 'Test Reservation 3',
+        color: { primary: '#ad2121', secondary: '#FAE3E3' },
+      },
+    ];
   }
-  goToAdminDashboard() {
-    this.router.navigate(['/admin']);
+
+  setView(view: CalendarView) {
+    this.view = view;
+  }
+
+  handleEventClick(event: CalendarEvent) {
+    console.log('Clicked event:', event);
   }
 }
