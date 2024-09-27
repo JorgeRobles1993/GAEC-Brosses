@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsModule y FormBuilder
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-admin-actualites',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule], // Asegúrate de importar ReactiveFormsModule
+  imports: [CommonModule, ReactiveFormsModule], 
   templateUrl: './admin-actualites.component.html',
   styleUrls: ['./admin-actualites.component.css'],
 })
@@ -26,23 +26,20 @@ export class AdminActualitesComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder
   ) {
-    // Inicializar el formulario de edición
     this.editForm = this.fb.group({
       titre: ['', Validators.required],
       content: ['', Validators.required],
-      image: [''], // Opcional
+      image: [''],
     });
 
-    // Inicializar el formulario de creación
     this.createForm = this.fb.group({
       titre: ['', Validators.required],
       content: ['', Validators.required],
-      image: [''], // Opcional
+      image: [''], 
     });
   }
 
   ngOnInit() {
-    // Obtener las publicaciones (actualités)
     this.authService.getPosts().subscribe(
       (data: any) => {
         this.actualites = data;
@@ -53,12 +50,9 @@ export class AdminActualitesComponent implements OnInit {
     );
   }
 
-  // Abrir el modal de edición
   openEditModal(actualite: any) {
     this.selectedActualite = actualite;
     this.isEditModalOpen = true;
-
-    // Rellenar el formulario con los datos de la actualité seleccionada
     this.editForm.patchValue({
       titre: actualite.titre,
       content: actualite.content,
@@ -66,14 +60,12 @@ export class AdminActualitesComponent implements OnInit {
     });
   }
 
-  // Cerrar el modal de edición
   closeEditModal() {
     this.isEditModalOpen = false;
     this.selectedActualite = null;
     this.editForm.reset();
   }
 
-  // Guardar los cambios de la edición
   saveChanges() {
     if (this.editForm.valid && this.selectedActualite) {
       const updatedActualite = {
@@ -81,7 +73,6 @@ export class AdminActualitesComponent implements OnInit {
         ...this.editForm.value,
       };
 
-      // Llamada al servicio para actualizar la publicación
       this.authService.updatePost(this.selectedActualite.id, updatedActualite).subscribe(
         (response) => {
           const index = this.actualites.findIndex((a) => a.id === this.selectedActualite.id);
@@ -97,19 +88,16 @@ export class AdminActualitesComponent implements OnInit {
     }
   }
 
-  // Abrir el modal de confirmación para eliminar
   confirmDelete(actualite: any) {
     this.actualiteToDelete = actualite;
     this.isDeleteModalOpen = true;
   }
 
-  // Cerrar el modal de eliminación
   closeDeleteModal() {
     this.isDeleteModalOpen = false;
     this.actualiteToDelete = null;
   }
 
-  // Eliminar la publicación
   deleteActualite() {
     if (this.actualiteToDelete) {
       this.authService.deletePost(this.actualiteToDelete.id).subscribe(
@@ -124,25 +112,21 @@ export class AdminActualitesComponent implements OnInit {
     }
   }
 
-  // Abrir el modal para crear una nueva actualité
   openCreateModal() {
     this.isCreateModalOpen = true;
-    this.createForm.reset(); // Limpiar el formulario
-  }
+    this.createForm.reset();  }
 
-  // Cerrar el modal de creación
   closeCreateModal() {
     this.isCreateModalOpen = false;
   }
 
-  // Crear una nueva actualité
   createActualite() {
     if (this.createForm.valid) {
       const newActualite = this.createForm.value;
       this.authService.createActualite(newActualite).subscribe(
         (response: any) => {
-          this.actualites.push(response); // Agregar la nueva actualité a la lista
-          this.closeCreateModal(); // Cerrar la modal después de crear
+          this.actualites.push(response); 
+          this.closeCreateModal(); 
         },
         (error) => {
           console.error('Erreur lors de la création de l\'actualité:', error);
@@ -151,7 +135,6 @@ export class AdminActualitesComponent implements OnInit {
     }
   }
 
-  // Navegar de regreso al dashboard de administración
   goToAdminDashboard() {
     this.router.navigate(['/admin']);
   }

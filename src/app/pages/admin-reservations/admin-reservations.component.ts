@@ -3,6 +3,7 @@ import { CalendarEvent, CalendarView } from 'angular-calendar';
 import { CommonModule } from '@angular/common';
 import { startOfDay, addHours, addDays } from 'date-fns';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth.service'; 
 import { CalendarModule } from 'angular-calendar';
 
 @Component({
@@ -10,7 +11,7 @@ import { CalendarModule } from 'angular-calendar';
   standalone: true,
   imports: [
     CommonModule,
-    CalendarModule, // Import the full CalendarModule
+    CalendarModule,
   ],
   templateUrl: './admin-reservations.component.html',
   styleUrls: ['./admin-reservations.component.css']
@@ -22,27 +23,27 @@ export class AdminReservationsComponent implements OnInit {
 
   CalendarView = CalendarView;
 
+  constructor(private authService: AuthService) {}
+
   ngOnInit(): void {
-    // Simulate some events
-    this.events = [
-      {
-        start: startOfDay(new Date()),
-        title: 'Test Reservation 1',
-        color: { primary: '#1e90ff', secondary: '#D1E8FF' },
+    this.loadReservations();
+  }
+
+  loadReservations() {
+    this.authService.getReservations().subscribe(
+      (reservations: any[]) => {
+        this.events = reservations.map(reservation => ({
+          title: `Reservación de ${reservation.user.name}`,
+          start: new Date(`${reservation.reservation_date}T${reservation.start_time}`),
+          end: new Date(`${reservation.reservation_date}T${reservation.end_time}`),
+          color: { primary: '#ad2121', secondary: '#FAE3E3' },
+          meta: { id: reservation.id, user: reservation.user }
+        }));
       },
-      {
-        start: addHours(new Date(), 2),
-        end: addHours(new Date(), 4),
-        title: 'Test Reservation 2',
-        color: { primary: '#e3bc08', secondary: '#FDF1BA' },
-        allDay: false,
-      },
-      {
-        start: addDays(new Date(), 1),
-        title: 'Test Reservation 3',
-        color: { primary: '#ad2121', secondary: '#FAE3E3' },
-      },
-    ];
+      (error) => {
+        console.error('Error al cargar las reservas:', error);
+      }
+    );
   }
 
   setView(view: CalendarView) {

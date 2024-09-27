@@ -19,7 +19,7 @@ export class ActualiteSingleComponent {
   ) {}
 
   ngOnInit() {
-    const postId = this.route.snapshot.paramMap.get('id'); // Obtener el ID de la URL
+    const postId = this.route.snapshot.paramMap.get('id');
     this.authService.getSinglePost(postId).subscribe(
       (data: any) => {
         this.post = data;

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router'; // Importar Router para redirigir
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-actualites',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './actualites.component.html',
-  styleUrls: ['./actualites.component.css'], // Corregido: styleUrls
+  styleUrls: ['./actualites.component.css'],
 })
 export class ActualitesComponent implements OnInit {
   posts: any[] = [];
@@ -32,7 +32,6 @@ export class ActualitesComponent implements OnInit {
   }
 
   redirectToSinglePost(id: number) {
-    //redirection to single post
     this.router.navigate(['/actualite', id]);
   }
 }

@@ -1,11 +1,11 @@
 .video-section {
     background-color: #F5F5F5;
-    padding: 0; /* Elimina cualquier padding para que el video ocupe todo el ancho */
+    padding: 0; 
   }
   
   .video-container {
-    width: 100%; /* Ocupa todo el ancho de la ventana */
-    height: 56.25vw; /* Mantiene la relación de aspecto 16:9 basada en el ancho de la ventana */
+    width: 100%;
+    height: 56.25vw; 
     position: relative;
     overflow: hidden;
   }

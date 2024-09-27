@@ -12,12 +12,12 @@
 }
 
 .full-width-section p {
-  flex: 1; /* Ocupa todo el espacio disponible a la izquierda */
-  margin-right: 20px; /* Espacio entre el texto y el enlace */
+  flex: 1; 
+  margin-right: 20px; 
 }
 
 .full-width-section a {
-  flex-shrink: 0; /* Evita que el enlace se encoja */
+  flex-shrink: 0; 
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -34,5 +34,5 @@
 }
 
 .carousel-section {
-  background-color: #c8e6c9; /* Color de fondo general */
+  background-color: #c8e6c9;
 }

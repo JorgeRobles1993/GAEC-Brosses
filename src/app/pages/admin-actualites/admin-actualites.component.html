@@ -21,9 +21,7 @@
       <td>{{ actualite.content }}</td>
       <td>{{ actualite.created_at | date:'short' }}</td>
       <td>
-        <!-- Mostrar la imagen si existe -->
         <img *ngIf="actualite.image" [src]="actualite.image" alt="{{ actualite.titre }}" width="100" height="100"/>
-        <!-- Mostrar mensaje si no hay imagen -->
         <span *ngIf="!actualite.image">Pas d'image</span>
       </td>
       <td>
@@ -34,8 +32,6 @@
   </tbody>
 </table>
 
-
-<!-- Modal para editar una actualité -->
 <div *ngIf="isEditModalOpen" class="modal">
   <div class="modal-content">
     <span class="close" (click)="closeEditModal()">&times;</span>
@@ -62,7 +58,6 @@
   </div>
 </div>
 
-<!-- Modal para confirmar eliminación -->
 <div *ngIf="isDeleteModalOpen" class="modal">
   <div class="modal-content">
     <span class="close" (click)="closeDeleteModal()">&times;</span>
@@ -73,7 +68,6 @@
   </div>
 </div>
 
-<!-- Modal para crear una nueva actualité -->
 <div *ngIf="isCreateModalOpen" class="modal">
   <div class="modal-content">
     <span class="close" (click)="closeCreateModal()">&times;</span>

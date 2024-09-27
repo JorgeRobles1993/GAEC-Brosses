@@ -14,21 +14,20 @@ import { ReactiveFormsModule } from '@angular/forms'; // Asegurarse de importar 
 })
 export class AdminUsersComponent implements OnInit {
   users: any[] = [];
-  editForm: FormGroup; // Formulario de edición/creación
-  selectedUser: any = null; // Usuario seleccionado para editar
-  isEditing: boolean = false; // Controla si estamos en modo edición
-  userToDelete: any = null; // Usuario seleccionado para eliminar
-  isDeleteModalOpen: boolean = false; // Controla si el modal de eliminación está abierto
-  isCreating: boolean = false; // Controla si estamos en modo creación
+  editForm: FormGroup; 
+  selectedUser: any = null; 
+  isEditing: boolean = false; 
+  userToDelete: any = null; 
+  isDeleteModalOpen: boolean = false; 
+  isCreating: boolean = false;
 
   constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) {
-    // Inicializar el formulario de edición/creación
     this.editForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      telefono: ['', [Validators.required, Validators.pattern('^[0-9]+$')]], // Validación para números de teléfono
+      telefono: ['', [Validators.required, Validators.pattern('^[0-9]+$')]], 
       rol: ['', [Validators.required]],
-      password: [''], // Contraseña no es requerida por defecto, pero se añadirá condicionalmente
+      password: [''], 
     });
   }
 
@@ -38,7 +37,7 @@ export class AdminUsersComponent implements OnInit {
       this.authService.getUsers(token).subscribe(
         (data: any) => {
           this.users = data;
-          console.log('Formulario editForm:', this.editForm); // Para depuración
+          console.log('Formulario editForm:', this.editForm); 
         },
         (error) => {
           console.error('Error al obtener los usuarios:', error);
@@ -49,17 +48,12 @@ export class AdminUsersComponent implements OnInit {
     }
   }
 
-  // Método para iniciar la edición de un usuario
   startEditing(user: any) {
     this.selectedUser = user;
     this.isEditing = true;
     this.isCreating = false;
-
-    // Quitar la validación de contraseña al editar
     this.editForm.get('password')?.clearValidators();
     this.editForm.get('password')?.updateValueAndValidity();
-
-    // Rellenar el formulario con los datos del usuario seleccionado
     this.editForm.patchValue({
       name: user.name,
       email: user.email,
@@ -68,32 +62,28 @@ export class AdminUsersComponent implements OnInit {
     });
   }
 
-  // Guardar los cambios en un usuario (creación o edición)
   saveChanges() {
     if (this.editForm.valid) {
       const updatedUser = this.editForm.value;
   
-      // Solo incluimos el campo "password" si fue modificado (si no, no lo enviamos)
       if (!updatedUser.password) {
-        delete updatedUser.password; // Si no se introduce password, lo eliminamos del objeto
+        delete updatedUser.password; 
       }
   
       const token = localStorage.getItem('authToken');
       if (token) {
         if (this.isCreating) {
-          // Crear un nuevo usuario
           this.authService.createUser(updatedUser, token).subscribe(
             (response) => {
               this.users.push(response);
               this.isCreating = false;
-              this.editForm.reset(); // Resetea el formulario
+              this.editForm.reset(); 
             },
             (error) => {
               console.error('Erreur lors de la création de l\'utilisateur:', error);
             }
           );
         } else if (this.isEditing && this.selectedUser) {
-          // Actualizar el usuario
           this.authService.updateUser(this.selectedUser.id, updatedUser, token).subscribe(
             (response) => {
               const index = this.users.findIndex(user => user.id === this.selectedUser.id);
@@ -102,7 +92,7 @@ export class AdminUsersComponent implements OnInit {
               }
               this.isEditing = false;
               this.selectedUser = null;
-              this.editForm.reset(); // Resetea el formulario
+              this.editForm.reset(); 
             },
             (error) => {
               console.error('Erreur lors de la mise à jour de l\'utilisateur:', error);
@@ -113,14 +103,12 @@ export class AdminUsersComponent implements OnInit {
     }
   }
 
-  // Cancelar la edición o creación
   cancelCreationOrEditing() {
     this.isCreating = false;
     this.isEditing = false;
-    this.editForm.reset(); // Resetear el formulario
+    this.editForm.reset(); 
   }
 
-  // Navegar de regreso a la dashboard
   goToAdminDashboard() {
     this.router.navigate(['/admin']);
   }
@@ -129,22 +117,19 @@ export class AdminUsersComponent implements OnInit {
     return this.editForm.controls;
   }
 
-  // Cerrar el modal sin eliminar el usuario
   closeDeleteModal() {
     this.isDeleteModalOpen = false;
-    this.userToDelete = null; // Limpiar el usuario seleccionado
+    this.userToDelete = null; 
   }
 
-  // Eliminar al usuario
   deleteUser() {
     if (this.userToDelete) {
       const token = localStorage.getItem('authToken');
       if (token) {
         this.authService.deleteUser(this.userToDelete.id, token).subscribe(
           (response) => {
-            // Eliminar el usuario de la lista local
             this.users = this.users.filter(user => user.id !== this.userToDelete.id);
-            this.closeDeleteModal(); // Cerrar el modal después de eliminar
+            this.closeDeleteModal(); 
           },
           (error) => {
             console.error('Error al eliminar el usuario:', error);
@@ -154,21 +139,17 @@ export class AdminUsersComponent implements OnInit {
     }
   }
 
-  // Abre el modal de confirmación para eliminar al usuario
   confirmDelete(user: any) {
-    this.userToDelete = user; // Guardar el usuario que se va a eliminar
-    this.isDeleteModalOpen = true; // Abrir el modal de confirmación
+    this.userToDelete = user; 
+    this.isDeleteModalOpen = true; 
   }
 
-  // Iniciar la creación de un nuevo usuario
   startCreating() {
     this.isCreating = true;
     this.isEditing = false;
-
-    // Añadir la validación de contraseña al crear
     this.editForm.get('password')?.setValidators([Validators.required]);
     this.editForm.get('password')?.updateValueAndValidity();
 
-    this.editForm.reset(); // Limpiar el formulario para un nuevo usuario
+    this.editForm.reset(); 
   }
 }

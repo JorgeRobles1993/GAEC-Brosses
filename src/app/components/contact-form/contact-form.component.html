@@ -1,6 +1,6 @@
 <div class="contact-form-container">
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-      <!-- Champ Nom -->
+      
       <div class="form-group">
         <label for="name">Nom</label>
         <input
@@ -16,7 +16,7 @@
         </div>
       </div>
   
-      <!-- Champ Email -->
+      
       <div class="form-group">
         <label for="email">Email</label>
         <input
@@ -32,7 +32,6 @@
         </div>
       </div>
   
-      <!-- Champ Téléphone -->
       <div class="form-group">
         <label for="phone">Téléphone</label>
         <input
@@ -48,7 +47,6 @@
         </div>
       </div>
   
-      <!-- Champ Message -->
       <div class="form-group">
         <label for="message">Message</label>
         <textarea
@@ -63,7 +61,6 @@
         </div>
       </div>
   
-      <!-- Bouton Envoyer -->
       <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">Envoyer</button>
     </form>
   </div>

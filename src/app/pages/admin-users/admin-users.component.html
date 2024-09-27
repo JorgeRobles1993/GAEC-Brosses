@@ -3,7 +3,6 @@
   <button class="btn btn-back" (click)="goToAdminDashboard()">Retour au Dashboard</button>
   <button class="btn btn-success" (click)="startCreating()">Créer un nouveau utilisateur</button>
 </div>
-<!-- Tabla de usuarios -->
 <table class="table">
   <thead>
     <tr>
@@ -28,7 +27,6 @@
   </tbody>
 </table>
 
-<!-- Modal para el formulario de creación/edición de usuario -->
 <div *ngIf="isCreating || isEditing" class="modal">
   <div class="modal-content">
     <span class="close" (click)="cancelCreationOrEditing()">&times;</span>
@@ -76,8 +74,6 @@
   </div>
 </div>
 
-
-<!-- Modal para confirmar eliminación -->
 <div *ngIf="isDeleteModalOpen" class="modal">
   <div class="modal-content">
     <span class="close" (click)="closeDeleteModal()">&times;</span>

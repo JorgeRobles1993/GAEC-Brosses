@@ -190,7 +190,13 @@ export class AuthService {
   
   // Obtener todas las reservaciones
   getReservations(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/reservations`);
+    const token = localStorage.getItem('authToken'); // Obtener el token del localStorage
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`  // Añadir el token a los headers
+    });
+
+    return this.http.get(`${this.apiUrl}/api/reservations`, { headers }); // Hacer la solicitud con el token
   }
 
   // Crear una nueva reservación

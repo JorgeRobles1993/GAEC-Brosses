@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';  // Importa también CommonModule si usas directivas como ngIf
+import { CommonModule } from '@angular/common';  
 
 @Component({
   selector: 'app-login',
   templateUrl: './connexion.component.html',
   styleUrls: ['./connexion.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule]  // Asegúrate de incluir ReactiveFormsModule aquí
+  imports: [ReactiveFormsModule, CommonModule]  
 })
 export class ConnexionComponent {
   loginForm: FormGroup;

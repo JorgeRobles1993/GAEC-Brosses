@@ -48,13 +48,13 @@ export class Carousel2Component {
     center: true,
     responsive: {
       0: {
-        items: 1, // Un solo elemento en pantallas pequeñas
+        items: 1, 
       },
       600: {
-        items: 1, // Un solo elemento en pantallas medianas
+        items: 1, 
       },
       1000: {
-        items: 1, // Un solo elemento en pantallas grandes
+        items: 1, 
       },
     },
     nav: true,

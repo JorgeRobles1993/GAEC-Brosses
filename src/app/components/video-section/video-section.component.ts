@@ -11,11 +11,9 @@ export class VideoSectionComponent {
   videoUrl: SafeResourceUrl;
 
   constructor(private sanitizer: DomSanitizer) {
-    // Reemplaza 'VIDEO_ID' con el ID real del video de YouTube
     this.videoUrl = this.sanitizeUrl('https://www.youtube.com/embed/CM6areo2nGc');
   }
 
-  // Método para sanitizar la URL
   sanitizeUrl(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }

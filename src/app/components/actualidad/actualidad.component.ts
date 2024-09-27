@@ -6,12 +6,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-actualidad',
   standalone: true,
-  imports: [CommonModule], // Importa CommonModule aquí
+  imports: [CommonModule], 
   templateUrl: './actualidad.component.html',
   styleUrls: ['./actualidad.component.css'],
 })
 export class ActualidadComponent implements OnInit {
-  // Definición de las tarjetas en francés
+  
   posts: any[] = [];
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -29,7 +29,6 @@ export class ActualidadComponent implements OnInit {
   }
 
   redirectToSinglePost(id: number) {
-    //redirection to single post
     this.router.navigate(['/actualite', id]);
   }
 }

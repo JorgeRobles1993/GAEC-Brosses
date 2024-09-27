@@ -1,9 +1,7 @@
-/* Color de fondo del navbar */
 .bg-navbar-color {
   background-color: #d7ccc8;
 }
 
-/* Colores de los textos */
 .text-marron {
   color: #8d6e63;
 }
@@ -12,14 +10,12 @@
   color: #4caf50;
 }
 
-/* Estilo para los enlaces activos */
 .active-link {
-  font-weight: bold; /* Opción: texto en negrita */
-  border-bottom: 2px solid #4caf50; /* Opción: subrayado verde */
-  color: #4caf50; /* Cambia el color del texto cuando está activo */
+  font-weight: bold; 
+  border-bottom: 2px solid #4caf50; 
+  color: #4caf50; 
 }
 
-/* Estilos adicionales para el menú Burger */
 @media (max-width: 1024px) {
   ul {
     display: none;
@@ -42,9 +38,9 @@
   }
 
   .active-link {
-    font-weight: bold; /* Opción: texto en negrita */
-    border-bottom: 2px solid #4caf50; /* Opción: subrayado verde */
-    color: #4caf50; /* Cambia el color del texto cuando está activo */
+    font-weight: bold; 
+    border-bottom: 2px solid #4caf50; 
+    color: #4caf50; 
   }
 }
 

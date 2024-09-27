@@ -13,7 +13,7 @@ export class ContactFormComponent {
   contactForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    // Initialiser le formulaire avec ses champs et ses validations
+    
     this.contactForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
@@ -22,11 +22,10 @@ export class ContactFormComponent {
     });
   }
 
-  // Méthode pour gérer l'envoi du formulaire
   onSubmit() {
     if (this.contactForm.valid) {
-      console.log(this.contactForm.value); // Ici, les données du formulaire peuvent être envoyées au backend
-      // Vous pouvez ajouter de la logique supplémentaire comme nettoyer le formulaire, afficher un message de succès, etc.
+      console.log(this.contactForm.value); 
+      
     }
   }
 }

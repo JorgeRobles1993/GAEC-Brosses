@@ -24,7 +24,12 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
-    importProvidersFrom(CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })),
+    importProvidersFrom(
+      CalendarModule.forRoot({
+        provide: DateAdapter,
+        useFactory: adapterFactory,
+      })
+    ),
     provideRouter(
       [
         { path: '', component: HomePageComponent },

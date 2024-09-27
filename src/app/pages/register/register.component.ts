@@ -17,15 +17,14 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
-      name: new FormControl('', [Validators.required]),  // Campo name agregado
+      name: new FormControl('', [Validators.required]),  
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]), // Cambié minLength a 8
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]), 
       confirmPassword: new FormControl('', [Validators.required]),
-      telefono: new FormControl('', [Validators.pattern('^[0-9]*$')]) // Campo telefono opcional
+      telefono: new FormControl('', [Validators.pattern('^[0-9]*$')]) 
     }, { validator: this.passwordMatchValidator });
   }
 
-  // Validador personalizado para confirmar que las contraseñas coinciden
   passwordMatchValidator(form: FormGroup) {
     const password = form.get('password')?.value;
     const confirmPassword = form.get('confirmPassword')?.value;
@@ -41,11 +40,10 @@ export class RegisterComponent {
         name: name,
         email: email,
         password: password,
-        password_confirmation: confirmPassword, // Laravel espera el campo password_confirmation
-        telefono: telefono || null // El campo telefono es opcional, se envía null si está vacío
+        password_confirmation: confirmPassword, 
+        telefono: telefono || null 
       };
   
-      // Enviar solicitud POST al backend para registrar al usuario
       this.authService.register(userData).subscribe(
         (response) => {
           console.log('Registro exitoso:', response);
@@ -62,7 +60,6 @@ export class RegisterComponent {
     this.router.navigate(['/login']);
   }
 
-  // Método para acceder a los controles de manera segura
   getFormControl(controlName: string): FormControl {
     return this.registerForm.get(controlName) as FormControl;
   }

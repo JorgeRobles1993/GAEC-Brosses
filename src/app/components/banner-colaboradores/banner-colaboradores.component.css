@@ -1,7 +1,7 @@
 .banner-wrapper {
   overflow: hidden;
   width: 100%;
-  background-color: #8d6e63; /* Fondo del banner */
+  background-color: #8d6e63; 
 }
 
 .banner-content {
@@ -13,7 +13,7 @@
 }
 
 .banner-content img {
-  width: 150px; /* Ajusta el tamaño de los logotipos */
+  width: 150px; 
   height: auto;
   padding: 10px;
 }

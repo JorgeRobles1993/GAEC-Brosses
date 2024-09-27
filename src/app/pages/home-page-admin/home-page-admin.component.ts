@@ -30,7 +30,7 @@ export class HomePageAdminComponent implements OnInit {
       if (token) {
         this.authService.getUsers(token).subscribe(
           (data: any) => {
-            this.users = data; // Asignar usuarios
+            this.users = data; 
             console.log('Usuarios obtenidos:', this.users);
           },
           (error) => {
