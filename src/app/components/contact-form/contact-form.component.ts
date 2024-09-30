@@ -1,31 +1,34 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { MailService } from '../../mail.service';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [FormsModule],
   templateUrl: './contact-form.component.html',
-  styleUrls: ['./contact-form.component.css'],
+  styleUrls: ['./contact-form.component.css']
 })
 export class ContactFormComponent {
-  contactForm: FormGroup;
+  constructor(private mailService: MailService, private router: Router) {}
 
-  constructor(private fb: FormBuilder) {
-    
-    this.contactForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
-      message: ['', [Validators.required, Validators.minLength(10)]],
-    });
-  }
+  mail = {
+    to: 'jorge.robles93@hotmail.com',
+    subject: '',
+    message: ''
+  };
 
-  onSubmit() {
-    if (this.contactForm.valid) {
-      console.log(this.contactForm.value); 
-      
-    }
+  sendMail() {
+    this.mailService.sendMail(this.mail).subscribe(
+      response => {
+        console.log('Mail sent successfully', response);
+        this.router.navigate(['/']);
+      },
+      error => {
+        console.error('Error sending mail', error);
+      }
+    );
   }
 }
+

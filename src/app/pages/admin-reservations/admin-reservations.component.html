@@ -4,19 +4,19 @@
   <button (click)="setView(CalendarView.Day)">Día</button>
 </div>
 
-<!-- <mwl-calendar-month-view
+<mwl-calendar-month-view
   *ngIf="view === CalendarView.Month"
   [viewDate]="viewDate"
   [events]="events"
   (eventClicked)="handleEventClick($event.event)">
-</mwl-calendar-month-view> -->
+</mwl-calendar-month-view> 
 
-<mwl-calendar-week-view [viewDate]="viewDate">
+<mwl-calendar-week-view *ngIf="view === CalendarView.Week" [viewDate]="viewDate">
 </mwl-calendar-week-view>
 
-<!-- <mwl-calendar-day-view
+ <mwl-calendar-day-view
   *ngIf="view === CalendarView.Day"
   [viewDate]="viewDate"
   [events]="events"
   (eventClicked)="handleEventClick($event.event)">
-</mwl-calendar-day-view> -->
+</mwl-calendar-day-view> 

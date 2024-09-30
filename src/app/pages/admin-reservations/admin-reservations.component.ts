@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarEvent, CalendarView } from 'angular-calendar';
+import { CalendarEvent, CalendarView , CalendarModule } from 'angular-calendar';
 import { CommonModule } from '@angular/common';
 import { startOfDay, addHours, addDays } from 'date-fns';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service'; 
-import { CalendarModule } from 'angular-calendar';
 
 @Component({
   selector: 'app-admin-reservations',
@@ -37,7 +36,7 @@ export class AdminReservationsComponent implements OnInit {
           start: new Date(`${reservation.reservation_date}T${reservation.start_time}`),
           end: new Date(`${reservation.reservation_date}T${reservation.end_time}`),
           color: { primary: '#ad2121', secondary: '#FAE3E3' },
-          meta: { id: reservation.id, user: reservation.user }
+          meta: { id: reservation.id, user: reservation.user },
         }));
       },
       (error) => {
@@ -53,4 +52,7 @@ export class AdminReservationsComponent implements OnInit {
   handleEventClick(event: CalendarEvent) {
     console.log('Clicked event:', event);
   }
+
+
+
 }

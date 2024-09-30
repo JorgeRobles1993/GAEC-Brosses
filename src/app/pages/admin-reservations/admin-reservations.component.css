@@ -66,12 +66,13 @@ button.active {
   font-size: 12px;
 }
 
+
 .calendar-event:hover {
   background-color: #2980b9;
 }
 
 .selected-day {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
@@ -100,4 +101,3 @@ button.active {
   background-color: #e74c3c;
   color: white;
 }
-

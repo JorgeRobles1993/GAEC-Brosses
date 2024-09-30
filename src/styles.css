@@ -1,25 +1,41 @@
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import "../node_modules/angular-calendar/css/angular-calendar.css";
-
 body {
-    font-family: 'Poppins', sans-serif;
-  }
+  font-family: "Poppins", sans-serif;
+}
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600; /* Aplica un peso más grueso a los encabezados */
-  }
-  
-  p, a, li, span {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400; /* Aplica un peso normal al texto */
-  }
-  
-  .navbar, .footer {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500; /* Aplica un peso medio a la navbar y el footer */
-  }
-  
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600; /* Aplica un peso más grueso a los encabezados */
+}
+
+p,
+a,
+li,
+span {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400; /* Aplica un peso normal al texto */
+}
+
+.navbar,
+.footer {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500; /* Aplica un peso medio a la navbar y el footer */
+}
+
+.cal-event {
+  background-color: red !important;
+  width: 200px !important;
+  height: 20px !important;
+  border-radius: unset!important;
+  opacity: unset!important;
+}

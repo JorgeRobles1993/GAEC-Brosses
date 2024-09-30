@@ -1,32 +1,66 @@
-.contact-form-container {
-  max-width: 600px;
-  margin: 40px auto; 
+/* Estilos generales para el formulario */
+form {
+  max-width: 500px;
+  margin: 0 auto;
   padding: 20px;
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;
 }
 
-.form-group {
-  margin-bottom: 15px;
+/* Estilo para las etiquetas */
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
 }
 
-.form-control {
+/* Estilo para los campos de entrada y el textarea */
+form input[type="email"],
+form input[type="text"],
+form textarea {
   width: 100%;
   padding: 10px;
-  border-radius: 5px;
+  margin-bottom: 15px;
   border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
 }
 
-.btn {
-  padding: 10px 20px;
+/* Mejora el estilo del textarea */
+form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Estilo para el botón de envío */
+form button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 12px;
   background-color: #007bff;
+  color: #fff;
   border: none;
-  color: white;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.btn[disabled] {
-  background-color: #cccccc;
-  cursor: not-allowed;
+/* Efecto hover para el botón */
+form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para mejorar el foco en los campos de entrada */
+form input[type="email"]:focus,
+form input[type="text"]:focus,
+form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
