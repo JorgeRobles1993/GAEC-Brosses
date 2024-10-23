@@ -1,64 +1,6 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-nav {
-  background-color: #d7ccc8;
-}
-
-.bg-footer-color {
-  background-color: #6D4C41;
-  color: #F5F5DC; 
-  text-align: center;
-  padding: 20px 0;
-  width: 100%;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-.text-vert {
-  color: #4CAF50;
-}
-
-.hover\:text-blue-400:hover {
-  color: #1DA1F2; 
-}
-
-.hover\:text-blue-600:hover {
-  color: #1877F2; 
-}
-
-.hover\:text-pink-600:hover {
-  color: #E4405F; 
-}
-
-.hover\:text-red-600:hover {
-  color: #FF0000; 
-}
-
 h5 {
   color: #F5F5DC;
   font-size: 1.25rem;
-}
-
-.footer {
-  background-color: #6D4C41;
-  color: #F5F5DC;
-  text-align: center;
-  padding: 20px;
-  width: 100%;
-  bottom: 0;
 }
 
 @media (max-width: 600px) {

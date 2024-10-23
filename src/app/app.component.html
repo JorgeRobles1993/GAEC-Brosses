@@ -1,3 +1,15 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<div class="wrapper">
+    <header>
+      <!-- Aquí va tu header o barra de navegación -->
+      <app-navbar></app-navbar>
+    </header>
+  
+    <main class="main-content">
+      <router-outlet></router-outlet> <!-- Aquí se cargan las páginas -->
+    </main>
+  
+    <footer>
+      <app-footer></app-footer> <!-- Tu componente de footer -->
+    </footer>
+  </div>
+  
