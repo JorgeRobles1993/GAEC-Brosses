@@ -59,6 +59,11 @@ h1 {
   background-color: #2980b9;
 }
 
+.btn-secondary {
+  background-color: #95a5a6; 
+  color: white;
+}
+
 .btn-danger {
   background-color: #e74c3c;
   color: white;
