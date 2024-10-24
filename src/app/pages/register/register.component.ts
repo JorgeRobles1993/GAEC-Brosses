@@ -51,6 +51,7 @@ export class RegisterComponent {
         },
         (error) => {
           console.error('Error en el registro:', error);
+          // TODO afficher message d'erreur span email doublon
         }
       );
     }

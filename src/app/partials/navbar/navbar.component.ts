@@ -19,10 +19,10 @@ export class NavbarComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    // Suscribirse al estado de autenticación
     this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
 
+      console.log(this.isAuthenticated)
       if (this.isAuthenticated) {
         const user = this.authService.getUserFromLocalStorage();
         this.userName = user ? user.name : null;
@@ -42,7 +42,6 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.logout().subscribe(() => {
-      // Redirigir al usuario a la página de inicio de sesión después del logout
       this.router.navigate(['/login']);
     });
   }

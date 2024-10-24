@@ -27,7 +27,7 @@ export class AuthService {
       tap((response: any) => {
         // Guardar la información del usuario en localStorage
         localStorage.setItem('authToken', response.token);
-        localStorage.setItem('user_id', response.user);
+        localStorage.setItem('user_id', response.user_id);
         localStorage.setItem('user_email', response.user_email);
         localStorage.setItem('user_rol', response.user_rol);
         localStorage.setItem('user_name', response.user_name);
@@ -102,7 +102,7 @@ export class AuthService {
   // 9. VERIFIER SI L'USER EST LOGGED IN
   isLoggedIn(): { isLoggedIn: boolean; userId: string | null } {
     const token = localStorage.getItem('authToken');
-    const userId = localStorage.getItem('user');
+    const userId = localStorage.getItem('user_id');
 
     if (token && userId) {
       return { isLoggedIn: true, userId };

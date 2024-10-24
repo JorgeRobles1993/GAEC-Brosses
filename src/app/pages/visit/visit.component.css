@@ -1,6 +1,6 @@
 .calendar-container {
     max-width: 800px;
-    margin: auto;
+    margin:  25px auto;
     text-align: center;
   }
   
@@ -37,3 +37,10 @@
     background-color: #f9f9f9;
   }
   
+  button:disabled {
+    background-color: #cccccc; 
+    color: #666666;           
+    cursor: not-allowed;     
+    border: 1px solid #999999; 
+    opacity: 0.6;            
+  }

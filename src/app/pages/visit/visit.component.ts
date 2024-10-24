@@ -14,6 +14,7 @@ import { startOfMonth, endOfMonth, addDays, isSaturday, addMonths, subMonths, st
 export class VisitComponent {
   view: CalendarView = CalendarView.Month;
   viewDate: Date = new Date();
+  currentDate : Date = new Date();
   events: CalendarEvent[] = [
     {
       start: startOfDay(new Date()), // Ejemplo de evento
@@ -23,13 +24,15 @@ export class VisitComponent {
   ];
 
   get saturdaysOfMonth(): Date[] {
+
     const start = startOfMonth(this.viewDate);
     const end = endOfMonth(this.viewDate);
     let current = start;
     const saturdays = [];
 
     while (current <= end) {
-      if (isSaturday(current)) {
+      console.log(current);
+      if (isSaturday(current) &&  current >= this.currentDate) {
         saturdays.push(current);
       }
       current = addDays(current, 1);

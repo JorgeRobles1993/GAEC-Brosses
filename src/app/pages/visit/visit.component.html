@@ -1,19 +1,20 @@
 <div class="calendar-container">
-    <div class="calendar-header">
-      <button (click)="previousMonth()">Moi precedent</button>
-      <h2>Samedis de {{ viewDate | date: 'MMMM yyyy' }}</h2>
-      <button (click)="nextMonth()">Moi suivant</button>
-    </div>
-    
-    <div class="calendar-body">
-      <div *ngFor="let day of saturdaysOfMonth" class="calendar-day">
-        <h3>{{ day | date: 'fullDate' }}</h3>
-        <div *ngFor="let event of events">
-          <div *ngIf="isSameDay(event.start, day)">
-            {{ event.title }}
-          </div>
+  <div class="calendar-header">
+    <button [disabled]="viewDate <= currentDate" (click)="previousMonth()">
+      Moi precedent
+    </button>
+    <h2>Samedis de {{ viewDate | date : "MMMM yyyy" }}</h2>
+    <button (click)="nextMonth()">Moi suivant</button>
+  </div>
+
+  <div class="calendar-body">
+    <div *ngFor="let day of saturdaysOfMonth" class="calendar-day">
+      <h3>{{ day | date : "fullDate" }}</h3>
+      <div *ngFor="let event of events">
+        <div *ngIf="isSameDay(event.start, day)">
+          {{ event.title }}
         </div>
       </div>
     </div>
   </div>
-  
+</div>
