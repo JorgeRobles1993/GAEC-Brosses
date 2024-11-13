@@ -1,6 +1,5 @@
 <nav class="bg-navbar-color p-4 shadow-lg">
   <div class="container mx-auto flex justify-between items-center">
-    <!-- Mostrar "Admin Page" solo si el usuario tiene rol 'admin' -->
     <a *ngIf="userRol === 'admin'"
       routerLink="/admin"
       routerLinkActive="active-link"
@@ -16,7 +15,6 @@
   >
     <img src="assets/logo.png" alt="GAEC-Brosses Logo" class="logo mr-2" />
 
-    <!-- Botón del menú Burger (Visible en pantallas pequeñas) -->
     <button
       class="inline-flex items-center p-2 rounded-md text-marron hover:text-vert lg:hidden"
       (click)="toggleMenu()"
@@ -39,7 +37,6 @@
     </button>
   </a>
 
-    <!-- Menú de navegación -->
     <ul
       [ngClass]="{ hidden: !isMenuOpen, block: isMenuOpen, 'lg:flex': true }"
       class="lg:space-x-6 lg:block space-y-2 lg:space-y-0 absolute lg:relative bg-navbar-color w-full lg:w-auto left-0 top-16 lg:top-0"
@@ -88,10 +85,9 @@
     </ul>
   </div>
 
-  <!-- Sección de autenticación -->
   <div>
     <ul>
-      <!-- Mostrar "Log In" y "Register" solo si el usuario no está autenticado -->
+      
       <li *ngIf="!userName">
         <a
           routerLink="/login"
@@ -113,7 +109,6 @@
         </a>
       </li>
 
-      <!-- Mostrar el nombre del usuario y botón de "Logout" si el usuario está autenticado -->
       <li *ngIf="userName">
         <span class="text-marron block text-center lg:inline-block">Welcome, <strong>{{ userName }}</strong></span>
       </li>

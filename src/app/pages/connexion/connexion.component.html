@@ -1,12 +1,12 @@
 <div class="login-container">
-  <h2>Iniciar Sesión</h2>
+  <h2>Se connecter</h2>
   <div *ngIf="loginError" class="error-message">
     {{ loginError }}
   </div>
 
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="email">Correo Electrónico</label>
+      <label for="email">Adresse e-mail</label>
       <input
         id="email"
         type="email"
@@ -15,12 +15,12 @@
         [ngClass]="{'is-invalid': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}"
       />
       <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="invalid-feedback">
-        El correo electrónico es obligatorio y debe tener un formato válido.
+        L'adresse e-mail est obligatoire et doit avoir un format valide.
       </div>
     </div>
 
     <div class="form-group">
-      <label for="password">Contraseña</label>
+      <label for="password">Mot de passe</label>
       <input
         id="password"
         type="password"
@@ -29,11 +29,11 @@
         [ngClass]="{'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}"
       />
       <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="invalid-feedback">
-        La contraseña es obligatoria y debe tener al menos 6 caracteres.
+        Le mot de passe est obligatoire et doit contenir au moins 6 caractères.
       </div>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
-      Iniciar Sesión
+      Se connecter
     </button>
     <small (click)="redirectToRegister()">Vous avez pas de compte? Register!</small>
   </form>

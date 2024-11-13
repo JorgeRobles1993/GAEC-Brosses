@@ -17,10 +17,9 @@ export class VisitComponent {
   currentDate : Date = new Date();
   events: CalendarEvent[] = [
     {
-      start: startOfDay(new Date()), // Ejemplo de evento
+      start: startOfDay(new Date()), 
       title: 'Evento del sábado',
     },
-    // Otros eventos
   ];
 
   get saturdaysOfMonth(): Date[] {
@@ -41,17 +40,14 @@ export class VisitComponent {
     return saturdays;
   }
 
-  // Método para ir al mes siguiente
   nextMonth(): void {
     this.viewDate = addMonths(this.viewDate, 1);
   }
 
-  // Método para ir al mes anterior
   previousMonth(): void {
     this.viewDate = subMonths(this.viewDate, 1);
   }
 
-  // Método para comparar si dos fechas son iguales
   isSameDay(date1: Date, date2: Date): boolean {
     return (
       date1.getFullYear() === date2.getFullYear() &&

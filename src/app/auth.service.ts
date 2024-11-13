@@ -9,7 +9,6 @@ import { catchError, tap } from 'rxjs/operators';
 export class AuthService {
   private apiUrl = 'http://localhost:8000';
 
-  // BehaviorSubject para seguir el estado de autenticación
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isLoggedIn().isLoggedIn);
   isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
@@ -25,14 +24,11 @@ export class AuthService {
     const body = { email, password };
     return this.http.post(`${this.apiUrl}/api/login`, body).pipe(
       tap((response: any) => {
-        // Guardar la información del usuario en localStorage
         localStorage.setItem('authToken', response.token);
         localStorage.setItem('user_id', response.user_id);
         localStorage.setItem('user_email', response.user_email);
         localStorage.setItem('user_rol', response.user_rol);
         localStorage.setItem('user_name', response.user_name);
-
-        // Emitir que el usuario está autenticado
         this.isAuthenticatedSubject.next(true);
       })
     );
@@ -44,14 +40,11 @@ export class AuthService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(`${this.apiUrl}/api/logout`, {}, { headers }).pipe(
       tap(() => {
-        // Eliminar los datos de localStorage
         localStorage.removeItem('authToken');
         localStorage.removeItem('user_id');
         localStorage.removeItem('user_email');
         localStorage.removeItem('user_rol');
         localStorage.removeItem('user_name');
-
-        // Emitir que el usuario ya no está autenticado
         this.isAuthenticatedSubject.next(false);
       }),
       catchError((error) => {
@@ -63,15 +56,8 @@ export class AuthService {
 
   // 4. REGISTER
   register(userData: any): Observable<any> {
-    // Asegúrate de que estás usando POST
     return this.http.post(`${this.apiUrl}/api/register`, userData);
   }
-  
-
-   // Método para registrar un usuario
-  //  register(data: any): Observable<any> {
-  //   return this.http.post(`${this.apiUrl}/register`, data);
-  // }
 
   // 5. RECUPERER UN USER
   getUser(): Observable<any> {
@@ -130,14 +116,14 @@ export class AuthService {
   }
 
   getLastPost(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/last-post`);  // Llamada a la nueva ruta de la API
+    return this.http.get(`${this.apiUrl}/api/last-post`);
   }
 
   updateUser(id: number, updatedUser: any, token: string): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    console.log('Enviando el siguiente cuerpo de datos:', updatedUser); // Para depurar
+    console.log('Enviando el siguiente cuerpo de datos:', updatedUser);
   
     return this.http.put(`${this.apiUrl}/api/user/${id}`, updatedUser, { headers });
   }
@@ -170,9 +156,8 @@ export class AuthService {
     return this.http.delete(url, { headers });
   }
 
-  // Método para actualizar una publicación
   updatePost(id: number, updatedData: any): Observable<any> {
-    const token = this.getToken(); // Obtener el token del localStorage
+    const token = this.getToken(); 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const url = `${this.apiUrl}/api/actualites/${id}`;
     return this.http.put(url, updatedData, { headers });
@@ -188,28 +173,24 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/api/actualites`, actualite, { headers });
   }
   
-  // Obtener todas las reservaciones
   getReservations(): Observable<any> {
-    const token = localStorage.getItem('authToken'); // Obtener el token del localStorage
+    const token = localStorage.getItem('authToken'); 
 
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`  // Añadir el token a los headers
+      Authorization: `Bearer ${token}`
     });
 
-    return this.http.get(`${this.apiUrl}/api/reservations`, { headers }); // Hacer la solicitud con el token
+    return this.http.get(`${this.apiUrl}/api/reservations`, { headers });
   }
 
-  // Crear una nueva reservación
   createReservation(reservationData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/reservations`, reservationData);
   }
 
-  // Actualizar una reservación
   updateReservation(id: number, reservationData: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/reservations/${id}`, reservationData);
   }
-
-  // Eliminar una reservación
+  
   deleteReservation(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/reservations/${id}`);
   }

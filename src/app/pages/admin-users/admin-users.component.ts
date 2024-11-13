@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // FormBuilder para el formulario
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms'; // Asegurarse de importar ReactiveFormsModule
-
+import { ReactiveFormsModule } from '@angular/forms'; 
 @Component({
   selector: 'app-admin-users',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule], // Asegurarse de importar los módulos necesarios
+  imports: [CommonModule, ReactiveFormsModule], 
   templateUrl: './admin-users.component.html',
   styleUrls: ['./admin-users.component.css'],
 })

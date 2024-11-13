@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MailService {
-  private apiUrl = 'http://localhost:8000/api/send-mail'; // URL de tu backend de Laravel
+  private apiUrl = 'http://localhost:8000/api/send-mail'; 
 
   constructor(private http: HttpClient) {}
 

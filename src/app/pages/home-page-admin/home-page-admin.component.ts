@@ -59,7 +59,7 @@ export class HomePageAdminComponent implements OnInit {
         );
 
         this.userName = localStorage.getItem('user_name');
-        this.newReservations = Math.floor(Math.random() * 10);  // Exemple de métrique simulée A CHANGER /******** */
+        this.newReservations = Math.floor(Math.random() * 10);
       }
     } else {
       this.tokenOk = false;

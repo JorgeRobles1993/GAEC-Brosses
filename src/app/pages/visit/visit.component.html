@@ -1,10 +1,10 @@
 <div class="calendar-container">
   <div class="calendar-header">
     <button [disabled]="viewDate <= currentDate" (click)="previousMonth()">
-      Moi precedent
+      Mois precedent
     </button>
-    <h2>Samedis de {{ viewDate | date : "MMMM yyyy" }}</h2>
-    <button (click)="nextMonth()">Moi suivant</button>
+    <h2> {{ viewDate | date : "MMMM yyyy" }}</h2>
+    <button (click)="nextMonth()">Mois suivant</button>
   </div>
 
   <div class="calendar-body">
