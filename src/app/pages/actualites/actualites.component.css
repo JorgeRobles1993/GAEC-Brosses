@@ -37,17 +37,43 @@ h1 {
 .post-card p {
   font-size: 14px;
   flex-grow: 1;
-  text-align: justify; 
+  text-align: justify;
 }
 
 .post-card img {
-  width: 100%;             
-  height: 200px;            
-  object-fit: cover;  
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
   margin-bottom: 10px;
   border-radius: 8px;
 }
 
 .post-card small {
   color: #888;
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .post-card {
+    flex: 0 1 calc(50% - 10px); /* Dos tarjetas por fila */
+  }
+}
+
+@media (max-width: 480px) {
+  .post-card {
+    flex: 0 1 100%; /* Una tarjeta por fila */
+    margin-bottom: 15px; /* Reduce el margen entre tarjetas */
+  }
+
+  .post-card img {
+    height: 150px; /* Ajusta la altura de la imagen en móviles */
+  }
+
+  .post-card h2 {
+    font-size: 16px; /* Reduce ligeramente el tamaño del título */
+  }
+
+  .post-card p {
+    font-size: 12px; /* Reduce el tamaño del texto */
+  }
 }

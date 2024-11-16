@@ -23,7 +23,13 @@ export class ActualitesComponent implements OnInit {
     this.authService.getPosts().subscribe(
       (data: any) => {
         this.posts = data;
-        console.log('Posts récupérés:', this.posts);
+
+        // Ordenar los posts del más nuevo al más viejo
+        this.posts.sort((a, b) => 
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        );
+
+        console.log('Posts récupérés et triés:', this.posts);
       },
       (error) => {
         console.error('Erreur lors de la récupération des actualités:', error);
