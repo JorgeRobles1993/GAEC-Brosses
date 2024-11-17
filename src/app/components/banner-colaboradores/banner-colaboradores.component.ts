@@ -10,15 +10,14 @@ import { CommonModule } from '@angular/common';
 })
 export class BannerColaboradoresComponent {
   colaboradores = [
-    'assets/logo.png',
-    'assets/logo.png',
-    'assets/logo.png',
-    'assets/logo.png',
-    'assets/logo.png',
-    'assets/logo.png',
-    'assets/logo.png',
-    'assets/logo.png',
-    'assets/logo.png',
-    'assets/logo.png',
+    'assets/chambre-de-agriculture.jpg',
+    'assets/CliniqueDesPierresJaunes.jpg',
+    'assets/CrozetFendt.jpg',
+    'assets/eureacoop.jpg',
+    'assets/CreditAgricole.jpg',
+    'assets/herdbookcharolais.jpg',
+    'assets/GenesDifussion.jpg',
+    'assets/coopelgenetique.jpg',
+    'assets/jhondeere.jpeg',
   ];
 }
