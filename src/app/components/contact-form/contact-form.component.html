@@ -1,9 +1,9 @@
 <form (ngSubmit)="sendMail()">
-  <label for="subject">Subject:</label>
+  <label for="subject">Sujet:</label>
   <input type="text" id="subject" [(ngModel)]="mail.subject" name="subject" required>
 
   <label for="message">Message:</label>
   <textarea id="message" [(ngModel)]="mail.message" name="message" required></textarea>
 
-  <button type="submit">Send Mail</button>
+  <button type="submit">Envoyer Mail</button>
 </form>
